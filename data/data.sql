@@ -1,0 +1,1 @@
+insert into primary_stats default values;
