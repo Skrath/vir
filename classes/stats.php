@@ -42,13 +42,3 @@ class primary_stats {
     }
 }
 
-class ability_group {
-
-    public $name;
-    public $base_level;
-    public $primary;
-    public $secondary;
-    public $negative;
-
-}
-
