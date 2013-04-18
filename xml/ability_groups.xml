@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<groups>
+  <group name="Hand to Hand">
+    <primary>Agility</primary>
+    <secondary>Intelligence</secondary>
+    <negative>Endurance</negative>
+  </group>
+
+  <group name="Long Blades">
+    <primary>Endurance</primary>
+    <secondary>Agility</secondary>
+    <negative>Perception</negative>
+  </group>
+
+</groups>
+
