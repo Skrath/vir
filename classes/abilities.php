@@ -28,18 +28,27 @@ class ability_groups {
     public $groups = array();
 
     public function __construct() {
-        //Temporary
-        $this->groups['Hand to hand'] = new ability_group(array(
-                                            'name' => 'Hand to Hand',
-                                            'primary' => 'Agility',
-                                            'secondary' => 'Intelligence',
-                                            'negative' => 'Endurance'));
+        $this->loadFromXML();
+    }
 
-        $this->groups['Long Blades'] = new ability_group(array(
-                                            'name' => 'Long Blades',
-                                            'primary' => 'Endurance',
-                                            'secondary' => 'Agility',
-                                            'negative' => 'Perception'));
+    public function loadFromXML() {
+
+        $file = XML_DIR . '/ability_groups.xml';
+
+        if (file_exists($file)) {
+            $xml = simplexml_load_file($file);
+
+            foreach ($xml as $group) {
+
+                $this->groups[(string)$group->attributes()['name']] = new ability_group(array(
+                                                                  'name' => (string)$group->attributes()['name'],
+                                                                  'primary' => (string)$group->primary,
+                                                                  'secondary' => (string)$group->secondary,
+                                                                  'negative' => (string)$group->negative));
+            }
+        } else {
+            exit("Failed to open $file");
+        }
 
     }
 
