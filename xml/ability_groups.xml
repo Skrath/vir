@@ -1,5 +1,7 @@
 <?xml version="1.0"?>
 <groups>
+
+  <!-- Combat groups -->
   <group name="Hand to Hand">
     <primary>Agility</primary>
     <secondary>Intelligence</secondary>
@@ -12,5 +14,73 @@
     <negative>Perception</negative>
   </group>
 
-</groups>
+  <group name="Short Blades">
+    <primary>Agility</primary>
+    <secondary>Perception</secondary>
+    <negative>Strength</negative>
+  </group>
 
+  <group name="Blunt">
+    <primary>Strength</primary>
+    <secondary>Endurance</secondary>
+    <negative>Intelligence</negative>
+  </group>
+
+  <group name="Missile">
+    <primary>Perception</primary>
+    <secondary>Luck</secondary>
+    <negative>Agility</negative>
+  </group>
+
+  <group name="Mental">
+    <primary>Intelligence</primary>
+    <secondary>Charisma</secondary>
+    <negative>Strength</negative>
+  </group>
+
+  <group name="Holy">
+    <primary>Charisma</primary>
+    <secondary>Luck</secondary>
+    <negative>Intelligence</negative>
+  </group>
+
+  <group name="Dark">
+    <primary>Endurance</primary>
+    <secondary>Perception</secondary>
+    <negative>Charisma</negative>
+  </group>
+
+  <group name="Elemental">
+    <primary>Luck</primary>
+    <secondary>Intelligence</secondary>
+    <negative>Agility</negative>
+  </group>
+
+  <group name="Sonic">
+    <primary>Strength</primary>
+    <secondary>Charisma</secondary>
+    <negative>Luck</negative>
+  </group>
+
+
+  <!-- Utility groups -->
+  <group name="Items">
+    <primary>Perception</primary>
+    <secondary>Strength</secondary>
+    <negative>Luck</negative>
+  </group>
+
+  <group name="Creatures">
+    <primary>Luck</primary>
+    <secondary>Strength</secondary>
+    <negative>Charisma</negative>
+  </group>
+
+  <group name="Crafting">
+    <primary>Strength</primary>
+    <secondary>Luck</secondary>
+    <negative>Endurance</negative>
+  </group>
+
+
+</groups>
