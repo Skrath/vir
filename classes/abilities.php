@@ -1,6 +1,8 @@
 <?php
 namespace vir;
 
+require_once('classes/traits.php');
+
 class ability_group {
 
     use BasicConstruct;

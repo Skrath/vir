@@ -1,6 +1,9 @@
 <?php
 namespace vir;
 
+require_once('classes/abilities.php');
+require_once('classes/stats.php');
+
 class character {
 
     public $stats;

@@ -1,6 +1,8 @@
 <?php
 namespace vir;
 
+require_once('classes/traits.php');
+
 class primary_stat {
 
     use BasicConstruct;
@@ -42,4 +44,3 @@ class primary_stats {
         $this->stats[$name]($value);
     }
 }
-
