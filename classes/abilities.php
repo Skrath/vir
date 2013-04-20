@@ -13,6 +13,14 @@ class ability_group {
     public $secondary;
     public $negative;
 
+    public function __invoke($value = null) {
+        if (is_integer($value)) {
+            $this->base_level = $value;
+        }
+
+        return $this->base_level;
+    }
+
     private function setup() {
         $this->allowed_construct_vars = array('name', 'primary', 'secondary', 'negative');
     }
@@ -28,14 +36,11 @@ class ability_group {
 }
 
 class ability_groups {
-    public $groups = array();
+
+    use ObjectGroup;
 
     public function __construct() {
         $this->loadFromXML();
-    }
-
-    public function __get($name) {
-        return $this->groups[$name];
     }
 
     public function loadFromXML() {
@@ -47,7 +52,7 @@ class ability_groups {
 
             foreach ($xml as $group) {
 
-                $this->groups[(string)$group->attributes()['name']] = new ability_group(array(
+                $this->container[(string)$group->attributes()['name']] = new ability_group(array(
                                                                   'name' => (string)$group->attributes()['name'],
                                                                   'primary' => (string)$group->primary,
                                                                   'secondary' => (string)$group->secondary,
@@ -60,8 +65,13 @@ class ability_groups {
     }
 
     public function calculate(primary_stats $primary_stats) {
-        foreach ($this->groups as $name => $group) {
+        foreach ($this->container as $name => $group) {
             $group->calculate($primary_stats);
         }
+    }
+
+    // Overloading ObjectGroup trait method
+    private function formatName($name) {
+        return $name;
     }
 }

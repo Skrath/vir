@@ -3,9 +3,9 @@ namespace vir;
 
 trait BasicConstruct {
 
-    private $allowed_construct_vars = array();
-
     abstract public function setup();
+
+    private $allowed_construct_vars = array();
 
     public function __construct($value_array) {
         $this->setup();
@@ -16,4 +16,24 @@ trait BasicConstruct {
             }
         }
     }
+}
+
+trait ObjectGroup {
+
+    private $container;
+
+    private function formatName($name) {
+        return ucfirst(strtolower($name));
+    }
+
+    public function __get($name) {
+        $name = $this->formatName($name);
+        return $this->container[$name];
+    }
+
+    public function __set($name, $value) {
+        $name = $this->formatName($name);
+        $this->container[$name]($value);
+    }
+
 }

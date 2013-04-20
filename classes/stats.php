@@ -26,21 +26,11 @@ class primary_stat {
 
 class primary_stats {
 
-    private $stats = array();
+    use ObjectGroup;
 
     public function __construct() {
         foreach (array('Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck') as $stat) {
-            $this->stats[$stat] = new primary_stat(array('name' => $stat));
+            $this->container[$stat] = new primary_stat(array('name' => $stat));
         }
-    }
-
-    public function __get($name) {
-        $name = ucfirst(strtolower($name));
-        return $this->stats[$name];
-    }
-
-    public function __set($name, $value) {
-        $name = ucfirst(strtolower($name));
-        $this->stats[$name]($value);
     }
 }
