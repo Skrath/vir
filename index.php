@@ -1,4 +1,5 @@
 <?php
+namespace vir;
 
 require('classes/traits.php');
 require('classes/stats.php');

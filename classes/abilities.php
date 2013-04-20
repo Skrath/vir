@@ -1,4 +1,5 @@
 <?php
+namespace vir;
 
 class ability_group {
 

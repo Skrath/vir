@@ -1,4 +1,5 @@
 <?php
+namespace vir;
 
 trait BasicConstruct {
 

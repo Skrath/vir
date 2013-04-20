@@ -1,4 +1,5 @@
 <?php
+namespace vir;
 
 class primary_stat {
 
