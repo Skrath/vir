@@ -6,16 +6,17 @@ require_once('classes/stats.php');
 
 class character {
 
-    public $stats;
+    public $primary_stats;
     public $ability_groups;
 
     public function __construct() {
-        $this->stats = new primary_stats();
+        $this->primary_stats = new primary_stats();
 
-        $this->stats->Agility = 7;
+        // for testing
+        $this->primary_stats->Agility = 7;
 
         $this->ability_groups = new ability_groups();
 
-        $this->ability_groups->calculate($this->stats);
+        $this->ability_groups->calculate($this->primary_stats);
     }
 }
