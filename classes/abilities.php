@@ -34,6 +34,10 @@ class ability_groups {
         $this->loadFromXML();
     }
 
+    public function __get($name) {
+        return $this->groups[$name];
+    }
+
     public function loadFromXML() {
 
         $file = XML_DIR . '/ability_groups.xml';
