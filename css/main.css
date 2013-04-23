@@ -1,0 +1,12 @@
+body {
+    background: lightgray;
+    font-family: helvetica, arial;
+}
+
+h2.box_title {
+    text-align: center;
+    font-variant: small-caps;
+    color: #111;
+    text-shadow: 1px 1px 1px #eee;
+    margin: 5px 0;
+}

@@ -1,0 +1,12 @@
+#primary_stats {
+    margin: 5px;
+    padding: 5px;
+    width: 300px;
+    background: slategray;
+    border-radius: 5px;
+    border: 1px solid transparent;
+    box-shadow:
+    -1px -1px 6px #bbb inset, /* Inset shadow */
+    1px 1px 8px #111; /* Outset shadow */
+
+}
