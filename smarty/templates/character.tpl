@@ -12,19 +12,31 @@
 
   <body>
 
-    <div id="primary_stats">
-      <div class="box_header">
-        <h2 class="box_title">Primary Stats</h2>
+    <div id="left">
+      <div id="primary_stats" class="box">
+        <div class="box_header">
+          <h2 class="box_title">Primary Stats</h2>
+        </div>
+        {foreach $character->primary_stats->container as $stat}
+        <div class="primary_stat">
+          <h3>{$stat->name}</h3>
+          <p>{$stat->value}</p>
+        </div>
+        {/foreach}
+        <div class="box_footer">
+        </div>
       </div>
-      {foreach $character->primary_stats->container as $stat}
-      <div class="primary_stat">
-        <h3>{$stat->name}</h3>
-        <p>{$stat->value}</p>
+    </div>
+
+    <div id="right">
+      {foreach $character->ability_groups->container as $ability_group}
+      <div class="ability_group box">
+        <div class="box_header">
+          <h2 class="box_title">{$ability_group->name}</h2>
+        </div>
+        <h3>Level: {$ability_group->base_level}</h3>
       </div>
       {/foreach}
-
-      <div class="box_footer">
-      </div>
     </div>
 
   </body>

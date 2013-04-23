@@ -18,6 +18,28 @@ audio, video {
     padding: 0;
 }
 
+#left {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#right {
+    width: 60%;
+    display: inline-block;
+}
+
+div.box {
+    margin: 5px;
+    background-color: #cbcbcb;
+    background-image: linear-gradient(#dcdcdc, #cbcbcb);
+    border-radius: 5px;
+    border: 1px solid #666;
+    box-shadow:
+    -1px -1px 6px #bbb inset, /* Inset shadow */
+    1px 1px 8px #111; /* Outset shadow */
+}
+
 div.box_header {
     background-color: #bababa;
     background-image: linear-gradient(#bababa, #ababab);
