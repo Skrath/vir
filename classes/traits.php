@@ -20,7 +20,7 @@ trait BasicConstruct {
 
 trait ObjectGroup {
 
-    private $container;
+    public $container;
 
     private function formatName($name) {
         return ucfirst(strtolower($name));
