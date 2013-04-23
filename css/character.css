@@ -1,12 +1,25 @@
 #primary_stats {
     margin: 5px;
-    padding: 5px;
+    /* padding: 5px; */
     width: 300px;
-    background: slategray;
+    background-color: #cbcbcb;
+    background-image: linear-gradient(#dcdcdc, #cbcbcb);
     border-radius: 5px;
-    border: 1px solid transparent;
+    border: 1px solid #666;
     box-shadow:
     -1px -1px 6px #bbb inset, /* Inset shadow */
     1px 1px 8px #111; /* Outset shadow */
+}
 
+div.primary_stat {
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+div.primary_stat h3 {
+    display: inline-block;
+}
+
+div.primary_stat p {
+    display: inline-block;
 }

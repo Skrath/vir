@@ -1,6 +1,31 @@
 body {
     background: lightgray;
+    font: 13px/1.4 Helvetica, arial;
     font-family: helvetica, arial;
+    color: #222;
+}
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6,
+p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del,
+dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup,
+tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form,
+label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, figure, figcaption, footer,
+header, hgroup, menu, nav, output, ruby, section, summary, time, mark,
+audio, video {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+
+div.box_header {
+    background-color: #bababa;
+    background-image: linear-gradient(#bababa, #ababab);
+    background-repeat: repeat-x;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom: 1px solid #666;
+    position: relative;
 }
 
 h2.box_title {
@@ -8,5 +33,14 @@ h2.box_title {
     font-variant: small-caps;
     color: #111;
     text-shadow: 1px 1px 1px #eee;
-    margin: 5px 0;
+}
+
+div.box_footer {
+    background-color: #bababa;
+    background-image: linear-gradient(#bababa, #ababab);
+    background-repeat: repeat-x;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top: 1px solid #666;
+    height: 10px;
 }
