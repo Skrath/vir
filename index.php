@@ -1,17 +1,14 @@
 <?php
 namespace vir;
 
+define('BASE_DIR', __DIR__);
+
+require_once('config/settings.php');
 require_once('classes/character.php');
 
-define('BASE_DIR', __DIR__);
-define('XML_DIR', BASE_DIR . '/xml');
+$smarty = new Smarty_Vir();
 
-
+$smarty->debugging = true;
+$smarty->display('character.tpl');
 
 $character = new character();
-
-/* $character->ability_groups->loadFromXML(); */
-
-var_dump($character->ability_groups);
-
-//echo $stats->strength;
