@@ -13,9 +13,17 @@
   <body>
 
     <div id="primary_stats">
-      <h2 class="box_title">Primary Stats</h2>
+      <div class="box_header">
+        <h2 class="box_title">Primary Stats</h2>
+      </div>
+      {foreach $character->primary_stats->container as $stat}
       <div class="primary_stat">
-        <p>5</p>
+        <h3>{$stat->name}</h3>
+        <p>{$stat->value}</p>
+      </div>
+      {/foreach}
+
+      <div class="box_footer">
       </div>
     </div>
 

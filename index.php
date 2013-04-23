@@ -9,6 +9,13 @@ require_once('classes/character.php');
 $smarty = new Smarty_Vir();
 
 $smarty->debugging = true;
-$smarty->display('character.tpl');
 
 $character = new character();
+
+$smarty->assign('character', $character);
+
+
+$smarty->display('character.tpl');
+
+
+var_dump($character->primary_stats);
