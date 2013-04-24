@@ -1,7 +1,7 @@
 <?php
 namespace vir;
 
-require_once('classes/traits.php');
+require_once(CLASSES_DIR .'/traits.php');
 
 class primary_stat {
 
