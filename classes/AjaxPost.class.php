@@ -57,8 +57,8 @@ final class AjaxPost {
         // Load the necessary class file
         require_once(BASE_DIR.'/classes/' . $this->object . '.class.php');
 
-        if (class_exists($this->object)) {
-            $reflectionObject = new ReflectionClass($this->object);
+        if (class_exists('vir\\' . $this->object)) {
+            $reflectionObject = new \ReflectionClass('vir\\' . $this->object);
             if (is_null($reflectionObject->getConstructor())) {
                 $this->post_error("Unable to instantiate {$this->object} object (no constructor)");
             } else {
