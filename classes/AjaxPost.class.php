@@ -1,4 +1,5 @@
 <?php
+namespace vir;
 
 final class AjaxPost {
 
