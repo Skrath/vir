@@ -8,7 +8,7 @@ $smarty = new Smarty_Vir();
 
 $smarty->debugging = true;
 
-$character = new character();
+$character = new Character();
 
 $smarty->assign('character', $character);
 

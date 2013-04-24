@@ -4,7 +4,7 @@ namespace vir;
 require_once('classes/abilities.php');
 require_once('classes/stats.php');
 
-class character {
+class Character {
 
     public $primary_stats;
     public $ability_groups;
