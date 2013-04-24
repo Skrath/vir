@@ -1,8 +1,6 @@
 <?php
 namespace vir;
 
-define('BASE_DIR', __DIR__);
-
 require_once('config/settings.php');
 require_once('classes/character.php');
 
