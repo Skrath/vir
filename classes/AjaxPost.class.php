@@ -106,11 +106,17 @@ final class AjaxPost {
     // Make sure that a $_REQUEST variable exists and is within our
     // $validation_array
     private function validate_request_var($variable) {
+        if (!$this->valid) return;
+
         $validation_array_name = 'allowed_' . $variable . 's';
         if (isset($_REQUEST[$variable]) && in_array($_REQUEST[$variable], $this->$validation_array_name)) {
             $this->$variable = $_REQUEST[$variable];
         } else {
-            $this->post_error("'{$_REQUEST[$variable]}' is not a valid $variable request");
+            if (isset($_REQUEST[$variable])) {
+                $this->post_error("'{$_REQUEST[$variable]}' is not a valid $variable request");
+            } else {
+                $this->post_error("\$_REQUEST does not contain variable: $variable");
+            }
         }
     }
 
