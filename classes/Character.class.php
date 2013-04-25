@@ -11,12 +11,27 @@ class Character {
 
     public function __construct() {
         $this->primary_stats = new primary_stats();
-
-        // for testing
-        $this->primary_stats->Agility = 7;
-
         $this->ability_groups = new ability_groups();
 
         $this->ability_groups->calculate($this->primary_stats);
+    }
+
+    public function setPrimaryStat($params) {
+
+        $this->primary_stats->$params['stat'] = (int)$params['value'];
+        $this->ability_groups->calculate($this->primary_stats);
+
+        return $this;
+    }
+
+    public function setMultiplePrimaryStats($params) {
+
+        foreach ($params as $stat => $value) {
+            $this->primary_stats->$stat = (int)$value;
+        }
+
+        $this->ability_groups->calculate($this->primary_stats);
+
+        return $this;
     }
 }
