@@ -2,7 +2,7 @@
 namespace vir;
 
 require_once('config/settings.php');
-require_once('classes/character.php');
+require_once(CLASSES_DIR .'/Character.class.php');
 
 $smarty = new Smarty_Vir();
 
