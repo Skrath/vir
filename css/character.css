@@ -2,17 +2,34 @@
     width: 300px;
 }
 
-div.primary_stat {
-    margin-top: 5px;
-    margin-left: 5px;
+#primary_stats ul {
+    list-style: none;
+    padding-left: 0;
 }
 
-div.primary_stat h3 {
+li.primary_stat {
+    padding: 5px;
+    border-bottom: 1px solid #555;
+    border-top: 1px solid #eee;
+}
+
+li.primary_stat:last-child {
+    border-bottom: none;
+}
+
+li.primary_stat h3 {
     display: inline-block;
 }
 
-div.primary_stat p {
+li.primary_stat input[type="text"] {
     display: inline-block;
+    font-size: 16pt;
+    text-align: center;
+    width: 50px;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 1px 1px 3px #333 inset;
+    background-image: linear-gradient(#ababab, #dcdcdc);
 }
 
 div.ability_group {
