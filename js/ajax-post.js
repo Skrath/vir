@@ -4,9 +4,9 @@
 // data_callback will be called on each individual returned item,
 // while callback will be called on the parent data.
 //
-// Errors are automatically handled via the insert_error() function.
+// Errors are automatically handled via the insertError() function.
 function ajax_submit(params, data_callback, callback) {
-    var url = '../process/ajax-post.php';
+    var url = 'ajax/public.php';
 
     jQuery.getJSON(url, params,
                    function (data) {
@@ -21,23 +21,61 @@ function ajax_submit(params, data_callback, callback) {
                                    callback(data);
                                }
                            } else {
-                               insert_error(data.output.error_message);
+                               insertError(data.output.error_message);
                            }
                        } else {
-                           insert_error(data.error_messages);
+                           insertError(data.error_messages);
                        }
                    });
 }
 
-function insert_error(error_string) {
-    var error_box = jQuery('div#error_box');
-    var error_list = jQuery('div#error_box ul#error_list');
-    var error = jQuery('<li>' + error_string + '</li>').css('display', 'none');
+function insertError(errorString) {
 
-    if (error_box.css('display') == 'none') {
-        error_box.slideDown();
+    var newPosition = {
+        my: "right bottom",
+        at: "right bottom",
+        of: window,
     }
 
-    error_list.append(error);
-    error.slideDown();
+    $(messageList).each(function(index) {
+        newPosition = {
+            my: "right bottom",
+            at: "right top",
+            of: this.parent()
+        };
+    });
+
+    var errorDialog =
+        $('<div title="Error" class="dialog_message"><li>' + errorString + '</li></div>');
+
+    $( errorDialog ).dialog({
+        dialogClass: "dialog_message",
+        autoOpen: false,
+        draggable: false,
+        resizable: false,
+        minHeight: 100,
+        position: newPosition,
+        close: function(event, ui) {
+            removeMessage(errorDialog);
+        },
+        show: {
+            effect: "slide",
+            direction: "right",
+            duration: 250
+        },
+        hide: {
+            effect: "fade",
+            duration: 500
+        }
+    });
+
+    errorDialog.dialog("open");
+
+    messageList.push(errorDialog);
+}
+
+function removeMessage(messageObject) {
+    messageList.splice(messageList.lastIndexOf(messageObject), 1);
+    messageObject.dialog("destroy");
+    messageObject.detach();
 }
