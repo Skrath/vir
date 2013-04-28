@@ -67,3 +67,7 @@ div.box_footer {
     min-height: 10px;
     text-align: center;
 }
+
+.dialog_message {
+    position: fixed;
+}
