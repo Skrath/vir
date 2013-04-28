@@ -5,9 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Vir - Character</title>
 
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
+    <script src="js/setup.js"></script>
+    <script src="js/ajax-post.js"></script>
 
+    <link href="http://code.jquery.com/ui/1.10.2/themes/smoothness/jquery-ui.css" media="all" rel="stylesheet" type="text/css" />
     <link href="css/main.css" media="all" rel="stylesheet" type="text/css" />
     <link href="css/character.css" media="all" rel="stylesheet" type="text/css" />
+
   </head>
 
   <body>
