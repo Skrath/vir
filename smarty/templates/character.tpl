@@ -27,11 +27,12 @@
           {foreach $character->primary_stats->container as $stat}
           <li class="primary_stat">
             <h3>{$stat->name}</h3>
-            <input id="{$stat->name}_value" type="text" value="{$stat->value}"/>
+            <input name="{$stat->name}_value" type="text" value="{$stat->value}"/>
           </li>
           {/foreach}
         </ul>
         <div class="box_footer">
+          <input type="submit" id="primary_stat_update" value="Update Primary Stats" />
         </div>
       </div>
     </div>
