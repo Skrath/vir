@@ -8,7 +8,7 @@ $(function() {
 function submit_primary_stats() {
     ajax_submit({
         'action': 'setMultiplePrimaryStats',
-        'object': 'Characterp',
+        'object': 'Character',
         'Strength': $("input[name='Strength_value']").val(),
         'Perception': $("input[name='Perception_value']").val(),
         'Endurance': $("input[name='Endurance_value']").val(),
