@@ -75,7 +75,24 @@ function insertError(errorString) {
 }
 
 function removeMessage(messageObject) {
-    messageList.splice(messageList.lastIndexOf(messageObject), 1);
+    var currentIndex = messageList.lastIndexOf(messageObject);
+    messageList.splice(currentIndex, 1);
     messageObject.dialog("destroy");
     messageObject.detach();
+
+
+    if (messageList.length > currentIndex) {
+
+        $.each(messageList, function(key, value) {
+            if (key >= currentIndex) {
+                value.dialog("option", {
+                    position: {
+                        my: "right bottom",
+                        at: (key != 0) ? "right top": "right bottom",
+                        of: (key != 0) ? messageList[key-1].parent() : window,
+                    }
+                });
+            }
+        });
+    }
 }
