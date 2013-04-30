@@ -17,14 +17,18 @@ class Character {
     }
 
     public function setPrimaryStat($params) {
+        $success = true;
+        $error_message = null;
 
         $this->primary_stats->$params['stat'] = (int)$params['value'];
         $this->ability_groups->calculate($this->primary_stats);
 
-        return $this;
+        return (array('success' => $success, 'data' => $this, 'error_message' => $error_message));
     }
 
     public function setMultiplePrimaryStats($params) {
+        $success = true;
+        $error_message = null;
 
         foreach ($params as $stat => $value) {
             $this->primary_stats->$stat = (int)$value;
@@ -32,6 +36,6 @@ class Character {
 
         $this->ability_groups->calculate($this->primary_stats);
 
-        return $this;
+        return (array('success' => $success, 'data' => $this, 'error_message' => $error_message));
     }
 }
