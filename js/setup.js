@@ -1,12 +1,12 @@
 $(function() {
-    $("#primary_stat_update").click(submit_primary_stats);
+    $("#primary_stat_update").click(submitPrimaryStats);
 
     messageList = [];
 
 });
 
-function submit_primary_stats() {
-    ajax_submit({
+function submitPrimaryStats() {
+    ajaxSubmit({
         'action': 'setMultiplePrimaryStats',
         'object': 'Character',
         'Strength': $("input[name='Strength_value']").val(),

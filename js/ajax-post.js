@@ -5,7 +5,7 @@
 // while callback will be called on the parent data.
 //
 // Errors are automatically handled via the insertError() function.
-function ajax_submit(params, data_callback, callback) {
+function ajaxSubmit(params, data_callback, callback) {
     var url = 'ajax/public.php';
 
     jQuery.getJSON(url, params,
