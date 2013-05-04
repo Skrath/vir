@@ -16,5 +16,21 @@ function submitPrimaryStats() {
         'Intelligence': $("input[name='Intelligence_value']").val(),
         'Agility': $("input[name='Agility_value']").val(),
         'Luck': $("input[name='Luck_value']").val(),
-    });
+    }, parseCharacter, null);
+}
+
+function parseCharacter(character) {
+    parseAbilityGroups(character.ability_groups);
+}
+
+function parseAbilityGroups(abilityGroups) {
+
+
+    for (var key in abilityGroups.container) {
+
+        var abilityGroupBox = $("#" + abilityGroups.container[key].flat_name + "_box");
+
+        abilityGroupBox.find("h3").text('Level: ' + abilityGroups.container[key].base_level);
+    }
+
 }
