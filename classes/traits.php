@@ -15,6 +15,12 @@ trait BasicConstruct {
                 $this->$name = $value;
             }
         }
+
+        $this->post_construct();
+    }
+
+    function post_construct() {
+
     }
 }
 
