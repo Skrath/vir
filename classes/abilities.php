@@ -8,6 +8,7 @@ class ability_group {
     use BasicConstruct;
 
     public $name;
+    public $flat_name;
     public $base_level;
     public $primary;
     public $secondary;
@@ -23,6 +24,10 @@ class ability_group {
 
     private function setup() {
         $this->allowed_construct_vars = array('name', 'primary', 'secondary', 'negative');
+    }
+
+    private function post_construct() {
+        $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
     }
 
     public function calculate(primary_stats $primary_stats) {
