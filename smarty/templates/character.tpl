@@ -39,7 +39,7 @@
 
     <div id="right">
       {foreach $character->ability_groups->container as $ability_group}
-      <div class="ability_group box">
+      <div id="{$ability_group->flat_name}_box" class="ability_group box">
         <div class="box_header">
           <h2 class="box_title">{$ability_group->name}</h2>
         </div>
