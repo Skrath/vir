@@ -43,7 +43,9 @@
         <div class="box_header">
           <h2 class="box_title">{$ability_group->name}</h2>
         </div>
-        <h3>Level: {$ability_group->base_level}</h3>
+        <div class="box_content">
+          <p class="level">{$ability_group->base_level}</p>
+        </div>
       </div>
       {/foreach}
     </div>

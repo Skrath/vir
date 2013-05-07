@@ -30,7 +30,7 @@ function parseAbilityGroups(abilityGroups) {
 
         var abilityGroupBox = $("#" + abilityGroups.container[key].flat_name + "_box");
 
-        abilityGroupBox.find("h3").text('Level: ' + abilityGroups.container[key].base_level);
+        abilityGroupBox.find("p.level").text(abilityGroups.container[key].base_level);
     }
 
 }

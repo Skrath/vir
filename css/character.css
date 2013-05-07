@@ -36,3 +36,7 @@ div.ability_group {
     width: 300px;
     display: inline-block;
 }
+
+p.level:before {
+    content: "Level: ";
+}

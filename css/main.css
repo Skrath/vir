@@ -57,6 +57,11 @@ h2.box_title {
     text-shadow: 1px 1px 1px #eee;
 }
 
+div.box_content {
+    padding: 5px;
+    border-top: 1px solid #eee;
+}
+
 div.box_footer {
     background-color: #bababa;
     background-image: linear-gradient(#bababa, #ababab);
