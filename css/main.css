@@ -1,4 +1,4 @@
-body {
+body, p {
     background: lightgray;
     font: 13px/1.4 Helvetica, arial;
     font-family: helvetica, arial;
@@ -75,4 +75,16 @@ div.box_footer {
 
 .dialog_message {
     position: fixed;
+}
+
+font.positive {
+    color: green;
+}
+
+font.negative {
+    color: red;
+}
+
+font.larger {
+    font-size: larger;
 }

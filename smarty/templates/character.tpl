@@ -44,6 +44,11 @@
           <h2 class="box_title">{$ability_group->name}</h2>
         </div>
         <div class="box_content">
+          <p>
+            <font class="positive larger">{$ability_group->primary}</font>,
+            <font class="positive">{$ability_group->secondary}</font>,
+            <font class="negative">{$ability_group->negative}</font>
+          </p>
           <p class="level">{$ability_group->base_level}</p>
         </div>
       </div>
