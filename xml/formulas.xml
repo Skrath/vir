@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<formulas>
+
+  <formula name="ability_group">
+    <set name="base_level" cast="integer">
+
+
+      <add>
+        <multiply>
+          <data type="primary_stat">
+            <objRef name="primary"/>
+          </data>
+          <data type="simple">2</data>
+        </multiply>
+        <data type="primary_stat">
+          <objRef name="secondary"/>
+        </data>
+
+        <subtract>
+          <multiply>
+            <data type="primary_stat">
+              <objRef name="negative"/>
+            </data>
+            <data type="simple">2</data>
+          </multiply>
+
+          <data type="simple">5</data>
+        </subtract>
+
+
+      </add>
+
+    </set>
+  </formula>
+
+</formulas>
