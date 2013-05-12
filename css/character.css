@@ -13,6 +13,10 @@ li.primary_stat {
     border-top: 1px solid #eee;
 }
 
+li.primary_stat:first-child {
+    border-top: none;
+}
+
 li.primary_stat:last-child {
     border-bottom: none;
 }
