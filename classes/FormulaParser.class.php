@@ -59,7 +59,7 @@ class FormulaParser {
         $total = 0;
 
         foreach ($xml->children() as $element) {
-            $total += (integer)$this->parse($element);
+            $total += (float)$this->parse($element);
         }
 
         return $total;
@@ -69,7 +69,7 @@ class FormulaParser {
         $total = 0;
 
         foreach ($xml->children() as $element) {
-            $total -= (integer)$this->parse($element);
+            $total -= (float)$this->parse($element);
         }
 
         return $total;
@@ -79,7 +79,7 @@ class FormulaParser {
         $total = 1;
 
         foreach ($xml->children() as $element) {
-            $total *= (integer)$this->parse($element);
+            $total *= (float)$this->parse($element);
         }
 
         return $total;
