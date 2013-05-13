@@ -10,7 +10,7 @@
           <data type="primary_stat">
             <objRef name="primary"/>
           </data>
-          <data type="simple">2</data>
+          <data>2</data>
         </multiply>
         <data type="primary_stat">
           <objRef name="secondary"/>
@@ -21,10 +21,10 @@
             <data type="primary_stat">
               <objRef name="negative"/>
             </data>
-            <data type="simple">2</data>
+            <data>2</data>
           </multiply>
 
-          <data type="simple">5</data>
+          <data>5</data>
         </subtract>
 
 

@@ -91,15 +91,14 @@ class FormulaParser {
         $value = ( count(get_object_vars($xml->children())) > 0 ) ? $this->parse($xml->children()) : (string)$xml;
 
         switch ($type) {
-            case 'simple':
-                $value = $xml;
-                break;
-
             case 'primary_stat':
                 $value = $this->getPrimaryStat($value);
                 break;
 
+            case 'simple':
             default:
+                $value = $xml;
+                break;
         }
 
         return $value;
