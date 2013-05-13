@@ -37,7 +37,7 @@ class FormulaParser {
     private function parse($xml) {
         $command = $xml->getName();
 
-        if ( method_exists($this, $command) && ($xml->count() > 0) ) {
+        if ( method_exists($this, $command)  ) {
             return $this->$command($xml);
         } else return (string)$xml;
     }
@@ -88,7 +88,7 @@ class FormulaParser {
     private function data($xml) {
         $type = $xml->attributes()['type'];
 
-        $value = ( count(get_object_vars($xml->children())) > 0 ) ? $this->parse($xml->children()) : (string)$xml->data;
+        $value = ( count(get_object_vars($xml->children())) > 0 ) ? $this->parse($xml->children()) : (string)$xml;
 
         switch ($type) {
             case 'simple':
