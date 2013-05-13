@@ -7,7 +7,7 @@ class FormulaParser {
     private $formulas = array();
     private $currentObject;
 
-    public function __construct($character) {
+    public function __construct(&$character) {
         $this->character = $character;
 
         $file = XML_DIR . '/formulas.xml';
@@ -22,7 +22,7 @@ class FormulaParser {
 
     }
 
-    public function compute($formula, $object) {
+    public function compute($formula, &$object) {
 
         if (array_key_exists($formula, $this->formulas)) {
             $this->currentObject = $object;
@@ -52,7 +52,7 @@ class FormulaParser {
 
         settype($value, $cast_type);
 
-        //todo: actually set new value here
+        $this->currentObject->$var = $value;
     }
 
     private function add($xml) {
