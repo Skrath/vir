@@ -1,0 +1,19 @@
+<?php
+
+/**
+ * This file contains core settings for the system.  In order for vir
+ * to work you must create a copy of this file with the name
+ * 'settings.php' and then make any required settings changes there.
+ * This way Git will not track changes to the local settings file,
+ * allowing users to customize vir without Git attempting to commit
+ * those settings, as they could vary between installations.
+ */
+
+namespace vir;
+
+define('BASE_DIR', dirname(__DIR__));
+define('XML_DIR', BASE_DIR . '/xml');
+define('VIR_SMARTY_DIR', BASE_DIR . '/smarty');
+define('CLASSES_DIR', BASE_DIR . '/classes');
+
+require_once('smarty_setup.php');
