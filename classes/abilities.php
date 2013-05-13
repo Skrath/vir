@@ -30,12 +30,10 @@ class ability_group {
         $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
     }
 
-    public function calculate(primary_stats $primary_stats) {
+    public function calculate(FormulaParser &$formulaParser) {
 
-        $this->base_level =
-            (($primary_stats->{$this->primary}->value * 2) +
-                ($primary_stats->{$this->secondary}->value) -
-                ($primary_stats->{$this->negative}->value * 2)) -5;
+        $formulaParser->compute('ability_group', $this);
+
     }
 
 }
@@ -69,9 +67,9 @@ class ability_groups {
 
     }
 
-    public function calculate(primary_stats $primary_stats) {
+    public function calculate(formulaParser &$formulaParser) {
         foreach ($this->container as $name => $group) {
-            $group->calculate($primary_stats);
+            $group->calculate($formulaParser);
         }
     }
 
