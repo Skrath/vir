@@ -33,7 +33,7 @@ class Stat {
 
 }
 
-class primary_stats {
+class PrimaryStats {
 
     use ObjectGroup;
 

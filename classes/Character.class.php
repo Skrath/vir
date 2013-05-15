@@ -7,13 +7,13 @@ require_once(CLASSES_DIR .'/FormulaParser.class.php');
 
 class Character {
 
-    public $primary_stats;
+    public $PrimaryStats;
     public $ability_groups;
 
     private $formulaParser;
 
     public function __construct() {
-        $this->primary_stats = new primary_stats();
+        $this->PrimaryStats = new PrimaryStats();
         $this->ability_groups = new ability_groups();
         $this->formulaParser = new FormulaParser($this);
 
@@ -24,7 +24,7 @@ class Character {
         $success = true;
         $error_message = null;
 
-        $this->primary_stats->$params['stat'] = (int)$params['value'];
+        $this->PrimaryStats->$params['stat'] = (int)$params['value'];
         $this->ability_groups->calculate($this->formulaParser);
 
         return (array('success' => $success, 'data' => $this, 'error_message' => $error_message));
@@ -35,7 +35,7 @@ class Character {
         $error_message = null;
 
         foreach ($params as $stat => $value) {
-            $this->primary_stats->$stat = (int)$value;
+            $this->PrimaryStats->$stat = (int)$value;
         }
 
         $this->ability_groups->calculate($this->formulaParser);

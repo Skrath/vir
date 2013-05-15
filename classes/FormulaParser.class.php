@@ -105,7 +105,7 @@ class FormulaParser {
     }
 
     private function getPrimaryStat($stat) {
-        return $this->character->primary_stats->$stat->value;
+        return $this->character->PrimaryStats->$stat->value;
     }
 
     private function objRef($xml) {
