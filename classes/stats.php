@@ -3,16 +3,24 @@ namespace vir;
 
 require_once(CLASSES_DIR .'/traits.php');
 
-class primary_stat {
+class Stat {
 
     use BasicConstruct;
 
+    protected $formula = null;
+
     public $name;
-    public $value = 5;
+    public $value = 0;
     public $adjustment = 0;
 
-    private function setup() {
-        $this->allowed_construct_vars = array('name', 'value', 'adjustment');
+    protected function setup() {
+        $this->allowed_construct_vars = array('name', 'value', 'adjustment', 'formula');
+    }
+
+    public function calculate(FormulaParser &$formulaParser) {
+
+        $formulaParser->compute($this->formula, $this);
+
     }
 
     public function __invoke($value = null) {
@@ -22,6 +30,7 @@ class primary_stat {
 
         return $this->value;
     }
+
 }
 
 class primary_stats {
@@ -30,7 +39,7 @@ class primary_stats {
 
     public function __construct() {
         foreach (array('Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck') as $stat) {
-            $this->container[$stat] = new primary_stat(array('name' => $stat));
+            $this->container[$stat] = new Stat(array('name' => $stat, 'value' => 5));
         }
     }
 }
