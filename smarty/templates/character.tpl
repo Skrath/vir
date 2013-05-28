@@ -25,7 +25,7 @@
         </div>
         <div class="box_content">
           <ul>
-            {foreach $character->primary_stats->container as $stat}
+            {foreach $character->PrimaryStats->container as $stat}
             <li class="primary_stat">
               <h3>{$stat->name}</h3>
               <input name="{$stat->name}_value" type="text" value="{$stat->value}"/>
