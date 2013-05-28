@@ -23,7 +23,7 @@ class ability_group {
     }
 
     private function setup() {
-        $this->allowed_construct_vars = array('name', 'primary', 'secondary', 'negative');
+        $this->allowed_construct_vars = ['name', 'primary', 'secondary', 'negative'];
     }
 
     private function post_construct() {
@@ -55,11 +55,11 @@ class ability_groups {
 
             foreach ($xml as $group) {
 
-                $this->container[(string)$group->attributes()['name']] = new ability_group(array(
+                $this->container[(string)$group->attributes()['name']] = new ability_group([
                                                                   'name' => (string)$group->attributes()['name'],
                                                                   'primary' => (string)$group->primary,
                                                                   'secondary' => (string)$group->secondary,
-                                                                  'negative' => (string)$group->negative));
+                                                                  'negative' => (string)$group->negative]);
             }
         } else {
             exit("Failed to open $file");

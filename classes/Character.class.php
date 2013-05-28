@@ -27,7 +27,7 @@ class Character {
         $this->PrimaryStats->$params['stat'] = (int)$params['value'];
         $this->ability_groups->calculate($this->formulaParser);
 
-        return (array('success' => $success, 'data' => $this, 'error_message' => $error_message));
+        return (['success' => $success, 'data' => $this, 'error_message' => $error_message]);
     }
 
     public function setMultiplePrimaryStats($params) {
@@ -40,6 +40,6 @@ class Character {
 
         $this->ability_groups->calculate($this->formulaParser);
 
-        return (array('success' => $success, 'data' => $this, 'error_message' => $error_message));
+        return (['success' => $success, 'data' => $this, 'error_message' => $error_message]);
     }
 }

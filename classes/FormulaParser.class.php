@@ -4,7 +4,7 @@ namespace vir;
 class FormulaParser {
 
     private $character;
-    private $formulas = array();
+    private $formulas = [];
     private $currentObject;
 
     public function __construct(&$character) {

@@ -14,7 +14,7 @@ class Stat {
     public $adjustment = 0;
 
     protected function setup() {
-        $this->allowed_construct_vars = array('name', 'value', 'adjustment', 'formula');
+        $this->allowed_construct_vars = ['name', 'value', 'adjustment', 'formula'];
     }
 
     public function calculate(FormulaParser &$formulaParser) {
@@ -38,8 +38,8 @@ class PrimaryStats {
     use ObjectGroup;
 
     public function __construct() {
-        foreach (array('Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck') as $stat) {
-            $this->container[$stat] = new Stat(array('name' => $stat, 'value' => 5));
+        foreach (['Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck'] as $stat) {
+            $this->container[$stat] = new Stat(['name' => $stat, 'value' => 5]);
         }
     }
 }

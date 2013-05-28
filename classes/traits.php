@@ -5,7 +5,7 @@ trait BasicConstruct {
 
     abstract public function setup();
 
-    protected $allowed_construct_vars = array();
+    protected $allowed_construct_vars = [];
 
     public function __construct($value_array) {
         $this->setup();

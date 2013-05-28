@@ -4,8 +4,8 @@ namespace vir;
 final class AjaxPost {
 
     private $sendback_JSONP;
-    private $allowed_objects = array();
-    private $allowed_actions = array();
+    private $allowed_objects = [];
+    private $allowed_actions = [];
     private $error_messages;
     private $output;
     private $valid = true;
@@ -33,7 +33,7 @@ final class AjaxPost {
     private function run_action() {
         if (!$this->valid) return;
 
-        $param_array = array();
+        $param_array = [];
 
         // Build our parameter list and make sure to pull out 'action'
         // and 'object'
@@ -80,11 +80,11 @@ final class AjaxPost {
 
     private function display() {
         $this->create_json_header();
-        echo json_encode(array(
+        echo json_encode([
                 'output' => $this->output,
                 'valid' => $this->valid,
                 'error_messages' => $this->error_messages,
-            ));
+            ]);
         $this->close_json();
     }
 
@@ -96,7 +96,7 @@ final class AjaxPost {
     }
 
     private function validate_request() {
-        foreach(array('action','object') as $var) {
+        foreach(['action','object'] as $var) {
             if ( !isset($_REQUEST[$var]) || $_REQUEST[$var] == '') {
                 $this->post_error("\$_REQUEST variable is missing the $var param");
             }
