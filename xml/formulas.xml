@@ -7,18 +7,18 @@
 
       <add>
         <multiply>
-          <data type="primary_stat">
+          <data type="character.PrimaryStat">
             <objRef name="primary"/>
           </data>
           <data>2</data>
         </multiply>
-        <data type="primary_stat">
+        <data type="character.PrimaryStat">
           <objRef name="secondary"/>
         </data>
 
         <subtract>
           <multiply>
-            <data type="primary_stat">
+            <data type="character.PrimaryStat">
               <objRef name="negative"/>
             </data>
             <data>2</data>

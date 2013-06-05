@@ -86,19 +86,36 @@ class FormulaParser {
     }
 
     private function data($xml) {
-        $type = $xml->attributes()['type'];
+        $terms = explode('.', $xml->attributes()['type']);
+
+        $type = array_shift($terms);
 
         $value = ( count(get_object_vars($xml->children())) > 0 ) ? $this->parse($xml->children()) : (string)$xml;
 
         switch ($type) {
-            case 'primary_stat':
-                $value = $this->getPrimaryStat($value);
+            case 'character':
+                $value = $this->getCharacterVar($value, $terms);
                 break;
 
             case 'simple':
             default:
                 $value = $xml;
                 break;
+        }
+
+        return $value;
+    }
+
+    private function getCharacterVar($value, $terms) {
+        $type = array_shift($terms);
+
+        switch ($type) {
+            case 'PrimaryStat':
+                $value = $this->getPrimaryStat($value);
+                break;
+
+            default:
+                $value = '';
         }
 
         return $value;
