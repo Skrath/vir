@@ -18,7 +18,6 @@ class Stat {
     }
 
     public function calculate(FormulaParser &$formulaParser) {
-
         $formulaParser->compute($this->formula, $this);
 
     }
@@ -33,6 +32,16 @@ class Stat {
 
 }
 
+class CharacterStats {
+
+    use ObjectGroup;
+
+    public function __construct() {
+
+        $this->container['Level'] = new Stat(['name' => 'Level', 'value' => 1]);
+    }
+}
+
 class PrimaryStats {
 
     use ObjectGroup;
@@ -42,4 +51,22 @@ class PrimaryStats {
             $this->container[$stat] = new Stat(['name' => $stat, 'value' => 5]);
         }
     }
+}
+
+class SecondaryStats {
+
+    use ObjectGroup;
+
+    public function __construct() {
+        $this->container['Health'] = new Stat(['name' => 'Health', 'formula' => 'health']);
+    }
+
+    public function calculate(FormulaParser &$formulaParser) {
+
+        foreach ($this->container as $stat) {
+            $stat->calculate($formulaParser);
+        }
+
+    }
+
 }

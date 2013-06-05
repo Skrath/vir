@@ -7,17 +7,22 @@ require_once(CLASSES_DIR .'/FormulaParser.class.php');
 
 class Character {
 
+    public $CharacterStats;
     public $PrimaryStats;
+    public $SecondaryStats;
     public $ability_groups;
 
     private $formulaParser;
 
     public function __construct() {
+        $this->CharacterStats = new CharacterStats();
         $this->PrimaryStats = new PrimaryStats();
+        $this->SecondaryStats = new SecondaryStats();
         $this->ability_groups = new ability_groups();
         $this->formulaParser = new FormulaParser($this);
 
         $this->ability_groups->calculate($this->formulaParser);
+        $this->SecondaryStats->calculate($this->formulaParser);
     }
 
     public function setPrimaryStat($params) {
