@@ -114,6 +114,10 @@ class FormulaParser {
                 $value = $this->getPrimaryStat($value);
                 break;
 
+            case 'CharacterStat':
+                $value = $this->getCharacterStat($value);
+                break;
+
             default:
                 $value = '';
         }
@@ -123,6 +127,10 @@ class FormulaParser {
 
     private function getPrimaryStat($stat) {
         return $this->character->PrimaryStats->$stat->value;
+    }
+
+    private function getCharacterStat($stat) {
+        return $this->character->CharacterStats->$stat->value;
     }
 
     private function objRef($xml) {
