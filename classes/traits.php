@@ -34,12 +34,28 @@ trait ObjectGroup {
 
     public function __get($name) {
         $name = $this->formatName($name);
-        return $this->container[$name];
+        return $this->find($name);
     }
 
     public function __set($name, $value) {
         $name = $this->formatName($name);
-        $this->container[$name]($value);
+
+        $item = $this->find($name);
+        $item($value);
     }
 
+    public function add($item) {
+        $this->container[] = $item;
+    }
+
+    private function find($name) {
+        $filter = function($array) use ($name) {
+            return ($array->name == $this->formatName($name));
+        };
+
+        $results = array_filter($this->container, $filter);
+
+        return array_shift($results);
+
+    }
 }
