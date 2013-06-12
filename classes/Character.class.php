@@ -7,7 +7,8 @@ require_once(CLASSES_DIR .'/FormulaParser.class.php');
 
 class Character {
 
-    public $CharacterStats;
+    use Named, Leveling;
+
     public $PrimaryStats;
     public $SecondaryStats;
     public $ability_groups;
@@ -15,7 +16,6 @@ class Character {
     private $formulaParser;
 
     public function __construct() {
-        $this->CharacterStats = new CharacterStats();
         $this->PrimaryStats = new PrimaryStats();
         $this->SecondaryStats = new SecondaryStats();
         $this->ability_groups = new ability_groups();
