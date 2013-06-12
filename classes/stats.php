@@ -48,7 +48,7 @@ class PrimaryStats {
 
     public function __construct() {
         foreach (['Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck'] as $stat) {
-            $this->add(new Stat(['name' => $stat, 'value' => 5]));
+            $this->add($stat, new Stat(['value' => 5]));
         }
     }
 }
@@ -58,7 +58,7 @@ class SecondaryStats {
     use ObjectGroup;
 
     public function __construct() {
-        $this->add(new Stat(['name' => 'Health', 'formula' => 'health']));
+        $this->add('Health', new Stat(['formula' => 'health']));
     }
 
     public function calculate(FormulaParser &$formulaParser) {

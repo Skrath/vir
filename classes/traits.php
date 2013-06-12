@@ -44,7 +44,8 @@ trait ObjectGroup {
         $item($value);
     }
 
-    public function add($item) {
+    public function add($name, $item) {
+        $item->name = $name;
         $this->container[] = $item;
     }
 
