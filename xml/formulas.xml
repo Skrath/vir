@@ -60,7 +60,7 @@
             </add>
 
             <add>
-              <data type="character.CharacterStat">Level</data>
+              <data type="character">level</data>
               <subtract>
                 <data>1</data>
               </subtract>

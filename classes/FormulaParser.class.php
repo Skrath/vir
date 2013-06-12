@@ -119,7 +119,7 @@ class FormulaParser {
                 break;
 
             default:
-                $value = '';
+                $value = $this->character->$value;
         }
 
         return $value;
