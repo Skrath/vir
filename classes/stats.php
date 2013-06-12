@@ -5,21 +5,11 @@ require_once(CLASSES_DIR .'/traits.php');
 
 class Stat {
 
-    use BasicConstruct;
+    use BasicConstruct, Named, Leveling, Calculable;
 
-    protected $formula = null;
-
-    public $name;
-    public $value = 0;
-    public $adjustment = 0;
 
     protected function setup() {
         $this->allowed_construct_vars = ['name', 'value', 'adjustment', 'formula'];
-    }
-
-    public function calculate(FormulaParser &$formulaParser) {
-        $formulaParser->compute($this->formula, $this);
-
     }
 
     public function __invoke($value = null) {
@@ -30,16 +20,6 @@ class Stat {
         return $this->value;
     }
 
-}
-
-class CharacterStats {
-
-    use ObjectGroup;
-
-    public function __construct() {
-
-        $this->add(new Stat(['name' => 'Level', 'value' => 1]));
-    }
 }
 
 class PrimaryStats {
