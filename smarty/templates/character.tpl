@@ -37,6 +37,24 @@
           <input type="submit" id="primary_stat_update" value="Update Primary Stats" />
         </div>
       </div>
+
+      <div id="secondary_stats" class="box">
+        <div class="box_header">
+          <h2 class="box_title">Secondary Stats</h2>
+        </div>
+        <div class="box_content">
+          <ul>
+            {foreach $character->SecondaryStats->container as $stat}
+            <li>
+              <strong>{$stat->name}</strong> {$stat->value}
+            </li>
+            {/foreach}
+          </ul>
+        </div>
+        <div class="box_footer">
+        </div>
+      </div>
+
     </div>
 
     <div id="right">
