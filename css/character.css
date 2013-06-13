@@ -25,6 +25,19 @@ li.primary_stat h3 {
     display: inline-block;
 }
 
+#secondary_stats ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+li.secondary_stat {
+
+}
+
+li.secondary_stat strong:after {
+    content: ":";
+}
+
 li.primary_stat input[type="text"] {
     display: inline-block;
     font-size: 16pt;

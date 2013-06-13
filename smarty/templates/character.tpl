@@ -45,7 +45,7 @@
         <div class="box_content">
           <ul>
             {foreach $character->SecondaryStats->container as $stat}
-            <li>
+            <li class="secondary_stat">
               <strong>{$stat->name}</strong> {$stat->value}
             </li>
             {/foreach}
