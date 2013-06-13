@@ -85,6 +85,13 @@ class FormulaParser {
         return $total;
     }
 
+    // Only takes 2 params currently
+    private function divide($xml) {
+        $total = (float)$this->parse($xml->children()[0]) / (float)$this->parse($xml->children()[1]);
+
+        return $total;
+    }
+
     private function data($xml) {
         $terms = explode('.', $xml->attributes()['type']);
 
