@@ -38,7 +38,8 @@ class SecondaryStats {
     use ObjectGroup;
 
     public function __construct() {
-        $this->add('Health', new Stat(['formula' => 'health']));
+        $this->add('Vigor', new Stat(['formula' => 'vigor']));
+        $this->add('Vigor Regen', new Stat(['formula' => 'vigor_regen']));
     }
 
     public function calculate(FormulaParser &$formulaParser) {

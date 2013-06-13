@@ -33,8 +33,8 @@
     </set>
   </formula>
 
-  <formula name="health">
-    <set name="value" cast="float">
+  <formula name="vigor">
+    <set name="value" cast="int">
       <add>
         <multiply>
           <add>
@@ -71,6 +71,25 @@
         </multiply>
 
       </add>
+    </set>
+  </formula>
+
+  <formula name="vigor_regen">
+    <set name="value" cast="float">
+      <divide>
+        <add>
+          <multiply>
+            <data type="character.PrimaryStat">Agility</data>
+            <data>2</data>
+          </multiply>
+          <data type="character.PrimaryStat">Charisma</data>
+          <multiply>
+            <data type="character.PrimaryStat">Strength</data>
+            <data type="character">level</data>
+          </multiply>
+        </add>
+        <data>8</data>
+      </divide>
     </set>
   </formula>
 </formulas>
