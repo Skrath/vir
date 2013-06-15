@@ -1,0 +1,62 @@
+<formulas>
+  <formula name="vigor">
+    <set name="value" cast="int">
+      <add>
+        <multiply>
+          <add>
+            <multiply>
+              <data type="character.PrimaryStat">Endurance</data>
+              <data>3</data>
+            </multiply>
+
+            <multiply>
+              <data type="character.PrimaryStat">Strength</data>
+              <data>2</data>
+            </multiply>
+          </add>
+          <data>10.5</data>
+        </multiply>
+
+        <multiply>
+
+          <multiply>
+            <add>
+              <data type="character.PrimaryStat">Endurance</data>
+              <data type="character.PrimaryStat">Strength</data>
+            </add>
+
+            <add>
+              <data type="character">level</data>
+              <subtract>
+                <data>1</data>
+              </subtract>
+            </add>
+          </multiply>
+
+          <data>10</data>
+        </multiply>
+
+      </add>
+    </set>
+  </formula>
+
+  <formula name="vigor_regen">
+    <set name="value" cast="float">
+      <divide>
+        <add>
+          <multiply>
+            <data type="character.PrimaryStat">Agility</data>
+            <data>2</data>
+          </multiply>
+          <data type="character.PrimaryStat">Charisma</data>
+          <multiply>
+            <data type="character.PrimaryStat">Strength</data>
+            <data type="character">level</data>
+          </multiply>
+        </add>
+        <data>8</data>
+      </divide>
+    </set>
+  </formula>
+
+</formulas>

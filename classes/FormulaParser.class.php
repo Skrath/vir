@@ -10,16 +10,17 @@ class FormulaParser {
     public function __construct(&$character) {
         $this->character = $character;
 
-        $file = XML_DIR . '/formulas.xml';
+        $directory_contents = scandir(FORMULAS_DIR);
 
-        if (file_exists($file)) {
-            $xml = simplexml_load_file($file);
+        foreach ($directory_contents as $file) {
+            if (strtolower(array_pop(explode('.', $file))) == 'xml') {
+                $xml = simplexml_load_file(FORMULAS_DIR . '/' . $file);
 
-            foreach ($xml as $formula) {
-                $this->formulas[(string)$formula->attributes()['name']] = $formula;
+                foreach ($xml as $formula) {
+                    $this->formulas[(string)$formula->attributes()['name']] = $formula;
+                }
             }
         }
-
     }
 
     public function compute($formula, &$object) {
