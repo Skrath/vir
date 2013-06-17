@@ -102,7 +102,7 @@ class FormulaParser {
 
         switch ($type) {
             case 'character':
-                $value = $this->getCharacterVar($value, $terms);
+                $value = $this->getVariable($this->character, $terms);
                 break;
 
             case 'simple':
@@ -112,6 +112,22 @@ class FormulaParser {
         }
 
         return $value;
+    }
+    
+    private function getVariable($target, $terms) {
+        
+        $current = $target;
+        
+        foreach ($terms as $term) {
+            if (isset($current->$term)) {
+                $current = $current->$term;
+            } else {
+                break;
+                // Some sort of message/log should be created here
+            }
+        }
+        
+        return $current;
     }
 
     private function getCharacterVar($value, $terms) {
