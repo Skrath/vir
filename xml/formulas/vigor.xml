@@ -5,12 +5,12 @@
         <multiply>
           <add>
             <multiply>
-              <data type="character.PrimaryStat">Endurance</data>
+              <data type="character.PrimaryStats">Endurance</data>
               <data>3</data>
             </multiply>
 
             <multiply>
-              <data type="character.PrimaryStat">Strength</data>
+              <data type="character.PrimaryStats">Strength</data>
               <data>2</data>
             </multiply>
           </add>
@@ -21,8 +21,8 @@
 
           <multiply>
             <add>
-              <data type="character.PrimaryStat">Endurance</data>
-              <data type="character.PrimaryStat">Strength</data>
+              <data type="character.PrimaryStats">Endurance</data>
+              <data type="character.PrimaryStats">Strength</data>
             </add>
 
             <add>
@@ -45,12 +45,12 @@
       <divide>
         <add>
           <multiply>
-            <data type="character.PrimaryStat">Agility</data>
+            <data type="character.PrimaryStats">Agility</data>
             <data>2</data>
           </multiply>
-          <data type="character.PrimaryStat">Charisma</data>
+          <data type="character.PrimaryStats">Charisma</data>
           <multiply>
-            <data type="character.PrimaryStat">Strength</data>
+            <data type="character.PrimaryStats">Strength</data>
             <data type="character">level</data>
           </multiply>
         </add>
