@@ -100,6 +100,8 @@ class FormulaParser {
 
         $value = ( count(get_object_vars($xml->children())) > 0 ) ? $this->parse($xml->children()) : (string)$xml;
 
+        $terms[] = $value;
+
         switch ($type) {
             case 'character':
                 $value = $this->getVariable($this->character, $terms);
