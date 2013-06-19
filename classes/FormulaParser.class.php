@@ -115,21 +115,24 @@ class FormulaParser {
 
         return $value;
     }
-    
+
     private function getVariable($target, $terms) {
-        
         $current = $target;
-        
+
         foreach ($terms as $term) {
-            if (isset($current->$term)) {
+            if (is_object($current->$term)) {
+
                 $current = $current->$term;
             } else {
+                if (isset($current->$term)) {
+                    $current = $current->$term;
+                }
                 break;
                 // Some sort of message/log should be created here
             }
         }
-        
-        return $current;
+
+        return is_object($current) ? $current->value : $current;
     }
 
     private function getCharacterVar($value, $terms) {
