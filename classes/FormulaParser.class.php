@@ -107,6 +107,10 @@ class FormulaParser {
                 $value = $this->getVariable($this->character, $terms);
                 break;
 
+            case 'object':
+                $value = $this->getVariable($this->currentObject, $terms);
+                break;
+
             case 'simple':
             default:
                 $value = $xml;
@@ -134,11 +138,4 @@ class FormulaParser {
 
         return is_object($current) ? $current->value : $current;
     }
-
-    private function objRef($xml) {
-        $var = (string)$xml->attributes()['name'];
-
-        return $this->currentObject->$var;
-    }
-
 }

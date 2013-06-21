@@ -8,18 +8,18 @@
       <add>
         <multiply>
           <data type="character.PrimaryStats">
-            <objRef name="primary"/>
+            <data type="object">primary</data>
           </data>
           <data>2</data>
         </multiply>
         <data type="character.PrimaryStats">
-          <objRef name="secondary"/>
+          <data type="object">secondary</data>
         </data>
 
         <subtract>
           <multiply>
             <data type="character.PrimaryStats">
-              <objRef name="negative"/>
+              <data type="object">negative</data>
             </data>
             <data>2</data>
           </multiply>
