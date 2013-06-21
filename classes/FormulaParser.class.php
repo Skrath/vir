@@ -135,33 +135,6 @@ class FormulaParser {
         return is_object($current) ? $current->value : $current;
     }
 
-    private function getCharacterVar($value, $terms) {
-        $type = array_shift($terms);
-
-        switch ($type) {
-            case 'PrimaryStat':
-                $value = $this->getPrimaryStat($value);
-                break;
-
-            case 'CharacterStat':
-                $value = $this->getCharacterStat($value);
-                break;
-
-            default:
-                $value = $this->character->$value;
-        }
-
-        return $value;
-    }
-
-    private function getPrimaryStat($stat) {
-        return $this->character->PrimaryStats->$stat->value;
-    }
-
-    private function getCharacterStat($stat) {
-        return $this->character->CharacterStats->$stat->value;
-    }
-
     private function objRef($xml) {
         $var = (string)$xml->attributes()['name'];
 
