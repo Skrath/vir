@@ -16,6 +16,10 @@ trait BasicConstruct {
         $this->callMemberFuncs('PostConstruct');
     }
 
+    private function addConstructVar($vars) {
+        $this->allowed_construct_vars = array_merge($this->allowed_construct_vars, $vars);
+    }
+
     private function callMemberFuncs($name) {
         foreach (array_merge([__CLASS__], class_uses($this)) as $trait) {
             $function_name = explode('\\', $trait)[1] . $name;
@@ -66,6 +70,10 @@ trait ObjectGroup {
 
 trait Named {
     public $name = '';
+
+    private function NamedPreConstruct() {
+        $this->addConstructVar(['name']);
+    }
 }
 
 trait Leveling {
@@ -94,6 +102,10 @@ trait Calculable {
 
     public $value = 0;
     public $adjustment = 0;
+
+    private function CalculablePreConstruct() {
+        $this->addConstructVar(['formula', 'value', 'adjustment']);
+    }
 
     public function calculate(FormulaParser &$formulaParser) {
         $formulaParser->compute($this->formula, $this);

@@ -22,7 +22,7 @@ class AbilityGroup {
     }
 
     private function AbilityGroupPreConstruct() {
-        $this->allowed_construct_vars = array_merge($this->allowed_construct_vars, ['name', 'primary', 'secondary', 'negative', 'formula']);
+        $this->addConstructVar(['primary', 'secondary', 'negative']);
     }
 
     private function AbilityGroupPostConstruct() {
