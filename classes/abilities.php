@@ -3,7 +3,7 @@ namespace vir;
 
 require_once(CLASSES_DIR .'/traits.php');
 
-class ability_group {
+class AbilityGroup {
 
     use BasicConstruct, Named, Calculable;
 
@@ -31,7 +31,7 @@ class ability_group {
 
 }
 
-class ability_groups {
+class AbilityGroups {
 
     use ObjectGroup;
 
@@ -47,7 +47,7 @@ class ability_groups {
             $xml = simplexml_load_file($file);
 
             foreach ($xml as $group) {
-                $this->add((string)$group->attributes()['name'], new ability_group([
+                $this->add((string)$group->attributes()['name'], new AbilityGroup([
                             'name' => (string)$group->attributes()['name'],
                             'formula' => 'ability_group',
                             'primary' => (string)$group->primary,

@@ -20,17 +20,17 @@ function submitPrimaryStats() {
 }
 
 function parseCharacter(character) {
-    parseAbilityGroups(character.ability_groups);
+    parseAbilityGroups(character.AbilityGroups);
 }
 
-function parseAbilityGroups(abilityGroups) {
+function parseAbilityGroups(AbilityGroups) {
 
 
-    for (var key in abilityGroups.container) {
+    for (var key in AbilityGroups.container) {
 
-        var abilityGroupBox = $("#" + abilityGroups.container[key].flat_name + "_box");
+        var abilityGroupBox = $("#" + AbilityGroups.container[key].flat_name + "_box");
 
-        abilityGroupBox.find("p.level").text(abilityGroups.container[key].base_level);
+        abilityGroupBox.find("p.level").text(AbilityGroups.container[key].base_level);
     }
 
 }

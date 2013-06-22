@@ -58,18 +58,18 @@
     </div>
 
     <div id="right">
-      {foreach $character->ability_groups->container as $ability_group}
-      <div id="{$ability_group->flat_name}_box" class="ability_group box">
+      {foreach $character->AbilityGroups->container as $AbilityGroup}
+      <div id="{$AbilityGroup->flat_name}_box" class="ability_group box">
         <div class="box_header">
-          <h2 class="box_title">{$ability_group->name}</h2>
+          <h2 class="box_title">{$AbilityGroup->name}</h2>
         </div>
         <div class="box_content">
           <p>
-            <font class="positive larger">{$ability_group->primary}</font>,
-            <font class="positive">{$ability_group->secondary}</font>,
-            <font class="negative">{$ability_group->negative}</font>
+            <font class="positive larger">{$AbilityGroup->primary}</font>,
+            <font class="positive">{$AbilityGroup->secondary}</font>,
+            <font class="negative">{$AbilityGroup->negative}</font>
           </p>
-          <p class="level">{$ability_group->base_level}</p>
+          <p class="level">{$AbilityGroup->base_level}</p>
         </div>
         <div class="box_footer"></div>
       </div>

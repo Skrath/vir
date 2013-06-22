@@ -11,17 +11,17 @@ class Character {
 
     public $PrimaryStats;
     public $SecondaryStats;
-    public $ability_groups;
+    public $AbilityGroups;
 
     private $formulaParser;
 
     public function __construct() {
         $this->PrimaryStats = new PrimaryStats();
         $this->SecondaryStats = new SecondaryStats();
-        $this->ability_groups = new ability_groups();
+        $this->AbilityGroups = new AbilityGroups();
         $this->formulaParser = new FormulaParser($this);
 
-        $this->ability_groups->calculate($this->formulaParser);
+        $this->AbilityGroups->calculate($this->formulaParser);
         $this->SecondaryStats->calculate($this->formulaParser);
     }
 
@@ -30,7 +30,7 @@ class Character {
         $error_message = null;
 
         $this->PrimaryStats->$params['stat'] = (int)$params['value'];
-        $this->ability_groups->calculate($this->formulaParser);
+        $this->AbilityGroups->calculate($this->formulaParser);
 
         return (['success' => $success, 'data' => $this, 'error_message' => $error_message]);
     }
@@ -43,7 +43,7 @@ class Character {
             $this->PrimaryStats->$stat = (int)$value;
         }
 
-        $this->ability_groups->calculate($this->formulaParser);
+        $this->AbilityGroups->calculate($this->formulaParser);
 
         return (['success' => $success, 'data' => $this, 'error_message' => $error_message]);
     }
