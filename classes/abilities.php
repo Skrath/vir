@@ -5,9 +5,8 @@ require_once(CLASSES_DIR .'/traits.php');
 
 class ability_group {
 
-    use BasicConstruct;
+    use BasicConstruct, Named, Calculable;
 
-    public $name;
     public $flat_name;
     public $base_level;
     public $primary;
@@ -23,17 +22,11 @@ class ability_group {
     }
 
     private function setup() {
-        $this->allowed_construct_vars = ['name', 'primary', 'secondary', 'negative'];
+        $this->allowed_construct_vars = ['name', 'primary', 'secondary', 'negative', 'formula'];
     }
 
     private function post_construct() {
         $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
-    }
-
-    public function calculate(FormulaParser &$formulaParser) {
-
-        $formulaParser->compute('ability_group', $this);
-
     }
 
 }
@@ -54,12 +47,12 @@ class ability_groups {
             $xml = simplexml_load_file($file);
 
             foreach ($xml as $group) {
-
-                $this->container[(string)$group->attributes()['name']] = new ability_group([
-                                                                  'name' => (string)$group->attributes()['name'],
-                                                                  'primary' => (string)$group->primary,
-                                                                  'secondary' => (string)$group->secondary,
-                                                                  'negative' => (string)$group->negative]);
+                $this->add((string)$group->attributes()['name'], new ability_group([
+                            'name' => (string)$group->attributes()['name'],
+                            'formula' => 'ability_group',
+                            'primary' => (string)$group->primary,
+                            'secondary' => (string)$group->secondary,
+                            'negative' => (string)$group->negative]));
             }
         } else {
             exit("Failed to open $file");
@@ -68,7 +61,7 @@ class ability_groups {
     }
 
     public function calculate(formulaParser &$formulaParser) {
-        foreach ($this->container as $name => $group) {
+        foreach ($this->container as $group) {
             $group->calculate($formulaParser);
         }
     }
