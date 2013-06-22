@@ -3,24 +3,27 @@ namespace vir;
 
 trait BasicConstruct {
 
-    abstract public function setup();
-
     protected $allowed_construct_vars = [];
 
     public function __construct($value_array) {
-        $this->setup();
+        $this->callMemberFuncs('PreConstruct');
 
         foreach ($value_array as $name => $value) {
             if (property_exists($this, $name) && in_array($name, $this->allowed_construct_vars)) {
                 $this->$name = $value;
             }
         }
-
-        $this->post_construct();
+        $this->callMemberFuncs('PostConstruct');
     }
 
-    function post_construct() {
+    private function callMemberFuncs($name) {
+        foreach (array_merge([__CLASS__], class_uses($this)) as $trait) {
+            $function_name = explode('\\', $trait)[1] . $name;
 
+            if (method_exists($this, $function_name)) {
+                call_user_func([$this, $function_name]);
+            }
+        }
     }
 }
 
