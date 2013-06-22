@@ -21,14 +21,13 @@ class AbilityGroup {
         return $this->base_level;
     }
 
-    private function setup() {
-        $this->allowed_construct_vars = ['name', 'primary', 'secondary', 'negative', 'formula'];
+    private function AbilityGroupPreConstruct() {
+        $this->allowed_construct_vars = array_merge($this->allowed_construct_vars, ['name', 'primary', 'secondary', 'negative', 'formula']);
     }
 
-    private function post_construct() {
+    private function AbilityGroupPostConstruct() {
         $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
     }
-
 }
 
 class AbilityGroups {

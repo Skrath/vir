@@ -8,8 +8,8 @@ class Stat {
     use BasicConstruct, Named, Leveling, Calculable;
 
 
-    protected function setup() {
-        $this->allowed_construct_vars = ['name', 'value', 'adjustment', 'formula'];
+    protected function StatPreConstruct() {
+        $this->allowed_construct_vars = array_merge($this->allowed_construct_vars, ['name', 'value', 'adjustment', 'formula']);
     }
 
     public function __invoke($value = null) {
