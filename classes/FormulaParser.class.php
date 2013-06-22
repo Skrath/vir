@@ -120,17 +120,16 @@ class FormulaParser {
         return $value;
     }
 
+    // Currently only works with member vars
     private function getVariable($target, $terms) {
         $current = $target;
 
         foreach ($terms as $term) {
             if (is_object($current->$term)) {
-
+                $current = $current->$term;
+            } elseif (isset($current->$term)) {
                 $current = $current->$term;
             } else {
-                if (isset($current->$term)) {
-                    $current = $current->$term;
-                }
                 break;
                 // Some sort of message/log should be created here
             }
