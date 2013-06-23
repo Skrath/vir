@@ -5,7 +5,7 @@ trait BasicConstruct {
 
     protected $allowed_construct_vars = [];
 
-    public function __construct($value_array) {
+    public function __construct($value_array = []) {
         $this->callMemberFuncs('PreConstruct');
 
         foreach ($value_array as $name => $value) {
