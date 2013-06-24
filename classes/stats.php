@@ -40,6 +40,8 @@ class SecondaryStats {
     public function __construct() {
         $this->add('Vigor', new Stat(['formula' => 'vigor']));
         $this->add('Vigor Regen', new Stat(['formula' => 'vigor_regen']));
+        $this->add('Focus', new Stat(['formula' => 'focus']));
+        $this->add('Focus Regen', new Stat(['formula' => 'focus_regen']));
     }
 
     public function calculate(FormulaParser &$formulaParser) {

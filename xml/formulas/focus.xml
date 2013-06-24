@@ -1,0 +1,62 @@
+<formulas>
+  <formula name="focus">
+    <set name="value" cast="int">
+      <add>
+        <multiply>
+          <add>
+            <multiply>
+              <data type="character.PrimaryStats">Intelligence</data>
+              <data>3</data>
+            </multiply>
+
+            <multiply>
+              <data type="character.PrimaryStats">Charisma</data>
+              <data>2</data>
+            </multiply>
+          </add>
+          <data>15.0</data>
+        </multiply>
+
+        <multiply>
+
+          <multiply>
+            <add>
+              <data type="character.PrimaryStats">Charisma</data>
+              <data type="character.PrimaryStats">Intelligence</data>
+            </add>
+
+            <add>
+              <data type="character">level</data>
+              <subtract>
+                <data>1</data>
+              </subtract>
+            </add>
+          </multiply>
+
+          <data>10</data>
+        </multiply>
+
+      </add>
+    </set>
+  </formula>
+
+  <formula name="focus_regen">
+    <set name="value" cast="float">
+      <divide>
+        <add>
+          <multiply>
+            <data type="character.PrimaryStats">Perception</data>
+            <data>2</data>
+          </multiply>
+          <data type="character.PrimaryStats">Luck</data>
+          <multiply>
+            <data type="character.PrimaryStats">Intelligence</data>
+            <data type="character">level</data>
+          </multiply>
+        </add>
+        <data>8</data>
+      </divide>
+    </set>
+  </formula>
+
+</formulas>
