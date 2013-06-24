@@ -35,11 +35,9 @@ trait BasicConstruct {
 
 trait ObjectGroup {
 
-    public $container;
+    use Named;
 
-    private function formatName($name) {
-        return ucfirst(strtolower($name));
-    }
+    public $container;
 
     public function __get($name) {
         $name = $this->formatName($name);
@@ -54,7 +52,7 @@ trait ObjectGroup {
     }
 
     public function add($name, $item) {
-        $item->name = $name;
+        $item->setName($name);
         $this->container[] = $item;
     }
 
@@ -71,10 +69,25 @@ trait ObjectGroup {
 
 trait Named {
     public $name = '';
+    public $flat_name;
 
     private function NamedPreConstruct() {
         $this->addConstructVar(['name']);
     }
+
+    private function NamedPostConstruct() {
+        $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
+    }
+
+    public function setName($name) {
+        $this->name = $this->formatName($name);
+        $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
+    }
+
+    private function formatName($name) {
+        return ucfirst(strtolower($name));
+    }
+
 }
 
 trait Leveling {

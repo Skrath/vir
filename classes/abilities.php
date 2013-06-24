@@ -7,7 +7,6 @@ class AbilityGroup {
 
     use BasicConstruct, Named, Calculable;
 
-    public $flat_name;
     public $base_level;
     public $primary;
     public $secondary;
@@ -23,10 +22,6 @@ class AbilityGroup {
 
     private function AbilityGroupPreConstruct() {
         $this->addConstructVar(['primary', 'secondary', 'negative']);
-    }
-
-    private function AbilityGroupPostConstruct() {
-        $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
     }
 }
 
