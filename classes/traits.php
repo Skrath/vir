@@ -34,19 +34,13 @@ trait BasicConstruct {
 }
 
 trait ObjectGroup {
-
-    use Named;
-
     public $container;
 
     public function __get($name) {
-        $name = $this->formatName($name);
         return $this->find($name);
     }
 
     public function __set($name, $value) {
-        $name = $this->formatName($name);
-
         $item = $this->find($name);
         $item($value);
     }
@@ -58,7 +52,7 @@ trait ObjectGroup {
 
     private function find($name) {
         $filter = function($array) use ($name) {
-            return ($array->name == $this->formatName($name));
+            return $array->checkName($name);
         };
 
         $results = array_filter($this->container, $filter);
@@ -82,6 +76,10 @@ trait Named {
     public function setName($name) {
         $this->name = $this->formatName($name);
         $this->flat_name = strtolower(str_replace(' ', '_', $this->name));
+    }
+
+    public function checkName($name) {
+        return ($this->name == $this->formatName($name));
     }
 
     private function formatName($name) {
