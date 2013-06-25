@@ -25,9 +25,7 @@ class AbilityGroup {
     }
 }
 
-class AbilityGroups {
-
-    use ObjectGroup;
+class AbilityGroups extends ObjectGroup {
 
     public function __construct() {
         $this->loadFromXML();
@@ -55,7 +53,7 @@ class AbilityGroups {
     }
 
     public function calculate(formulaParser &$formulaParser) {
-        foreach ($this->container as $group) {
+        foreach ($this as $group) {
             $group->calculate($formulaParser);
         }
     }

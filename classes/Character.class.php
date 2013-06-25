@@ -1,6 +1,7 @@
 <?php
 namespace vir;
 
+require_once(CLASSES_DIR .'/ObjectGroup.class.php');
 require_once(CLASSES_DIR .'/abilities.php');
 require_once(CLASSES_DIR .'/stats.php');
 require_once(CLASSES_DIR .'/FormulaParser.class.php');

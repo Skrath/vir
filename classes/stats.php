@@ -22,9 +22,7 @@ class Stat {
 
 }
 
-class PrimaryStats {
-
-    use ObjectGroup;
+class PrimaryStats extends ObjectGroup {
 
     public function __construct() {
         foreach (['Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck'] as $stat) {
@@ -33,9 +31,7 @@ class PrimaryStats {
     }
 }
 
-class SecondaryStats {
-
-    use ObjectGroup;
+class SecondaryStats extends ObjectGroup {
 
     public function __construct() {
         $this->add('Vigor', new Stat(['formula' => 'vigor']));
@@ -46,7 +42,7 @@ class SecondaryStats {
 
     public function calculate(FormulaParser &$formulaParser) {
 
-        foreach ($this->container as $stat) {
+        foreach ($this as $stat) {
             $stat->calculate($formulaParser);
         }
 

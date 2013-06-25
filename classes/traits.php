@@ -33,34 +33,6 @@ trait BasicConstruct {
     }
 }
 
-trait ObjectGroup {
-    public $container;
-
-    public function __get($name) {
-        return $this->find($name);
-    }
-
-    public function __set($name, $value) {
-        $item = $this->find($name);
-        $item($value);
-    }
-
-    public function add($name, $item) {
-        $item->setName($name);
-        $this->container[] = $item;
-    }
-
-    private function find($name) {
-        $filter = function($array) use ($name) {
-            return $array->checkName($name);
-        };
-
-        $results = array_filter($this->container, $filter);
-
-        return array_shift($results);
-    }
-}
-
 trait Named {
     public $name = '';
     public $flat_name;

@@ -25,7 +25,7 @@
         </div>
         <div class="box_content">
           <ul>
-            {foreach $character->PrimaryStats->container as $stat}
+            {foreach $character->PrimaryStats as $stat}
             <li class="primary_stat">
               <h3>{$stat->name}</h3>
               <input name="{$stat->name}_value" type="text" value="{$stat->value}"/>
@@ -44,9 +44,9 @@
         </div>
         <div class="box_content">
           <ul>
-            {foreach $character->SecondaryStats->container as $stat}
-            <li class="secondary_stat">
-              <strong>{$stat->name}</strong> {$stat->value}
+            {foreach $character->SecondaryStats as $stat}
+            <li id="{$stat->flat_name}_stat" class="secondary_stat">
+              <strong>{$stat->name}</strong> <p>{$stat->value}</p>
             </li>
             {/foreach}
           </ul>
@@ -58,7 +58,7 @@
     </div>
 
     <div id="right">
-      {foreach $character->AbilityGroups->container as $AbilityGroup}
+      {foreach $character->AbilityGroups as $AbilityGroup}
       <div id="{$AbilityGroup->flat_name}_box" class="ability_group box">
         <div class="box_header">
           <h2 class="box_title">{$AbilityGroup->name}</h2>
