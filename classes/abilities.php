@@ -13,6 +13,8 @@ class AbilityGroup {
     public $negative;
 
     public function __invoke($value = null) {
+        Debug::Log();
+
         if (is_integer($value)) {
             $this->base_level = $value;
         }
@@ -21,6 +23,8 @@ class AbilityGroup {
     }
 
     private function AbilityGroupPreConstruct() {
+        Debug::Log();
+
         $this->addConstructVar(['primary', 'secondary', 'negative']);
     }
 }
@@ -28,10 +32,13 @@ class AbilityGroup {
 class AbilityGroups extends ObjectGroup {
 
     public function __construct() {
+        Debug::Log();
+
         $this->loadFromXML();
     }
 
     public function loadFromXML() {
+        Debug::Log();
 
         $file = XML_DIR . '/ability_groups.xml';
 
@@ -53,6 +60,8 @@ class AbilityGroups extends ObjectGroup {
     }
 
     public function calculate(formulaParser &$formulaParser) {
+        Debug::Log();
+
         foreach ($this as $group) {
             $group->calculate($formulaParser);
         }
@@ -60,6 +69,8 @@ class AbilityGroups extends ObjectGroup {
 
     // Overloading ObjectGroup trait method
     private function formatName($name) {
+        Debug::Log();
+
         return $name;
     }
 }

@@ -6,6 +6,8 @@ class ObjectGroup implements \Iterator {
     private $container = [];
 
     public function __construct() {
+        Debug::Log();
+
         $this->position = 0;
     }
 
@@ -30,21 +32,30 @@ class ObjectGroup implements \Iterator {
         return isset($this->container[$this->position]);
     }
 
+
     public function __get($name) {
+        Debug::Log();
+
         return $this->find($name);
     }
 
     public function __set($name, $value) {
+        Debug::Log();
+
         $item = $this->find($name);
         $item($value);
     }
 
     public function add($name, $item) {
+        Debug::Log();
+
         $item->setName($name);
         $this->container[] = $item;
     }
 
     private function find($name) {
+        Debug::Log();
+
         $filter = function($array) use ($name) {
             return $array->checkName($name);
         };

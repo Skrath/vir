@@ -13,6 +13,8 @@ class Stat {
     }
 
     public function __invoke($value = null) {
+        Debug::Log();
+
         if (is_integer($value)) {
             $this->value = $value;
         }
@@ -25,6 +27,8 @@ class Stat {
 class PrimaryStats extends ObjectGroup {
 
     public function __construct() {
+        Debug::Log();
+
         foreach (['Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck'] as $stat) {
             $this->add($stat, new Stat(['value' => 5]));
         }
@@ -34,6 +38,8 @@ class PrimaryStats extends ObjectGroup {
 class SecondaryStats extends ObjectGroup {
 
     public function __construct() {
+        Debug::Log();
+
         $this->add('Vigor', new Stat(['formula' => 'vigor']));
         $this->add('Vigor Regen', new Stat(['formula' => 'vigor_regen']));
         $this->add('Focus', new Stat(['formula' => 'focus']));
@@ -41,6 +47,7 @@ class SecondaryStats extends ObjectGroup {
     }
 
     public function calculate(FormulaParser &$formulaParser) {
+        Debug::Log();
 
         foreach ($this as $stat) {
             $stat->calculate($formulaParser);

@@ -17,6 +17,8 @@ class Character {
     private $formulaParser;
 
     private function CharacterPostConstruct() {
+        Debug::Log();
+
         $this->PrimaryStats = new PrimaryStats();
         $this->SecondaryStats = new SecondaryStats();
         $this->AbilityGroups = new AbilityGroups();
@@ -24,11 +26,15 @@ class Character {
     }
 
     public function setup() {
+        Debug::Log();
+
         $this->AbilityGroups->calculate($this->formulaParser);
         $this->SecondaryStats->calculate($this->formulaParser);
     }
 
     public function setPrimaryStat($params) {
+        Debug::Log();
+
         $success = true;
         $error_message = null;
 
@@ -39,6 +45,8 @@ class Character {
     }
 
     public function setMultiplePrimaryStats($params) {
+        Debug::Log();
+
         $success = true;
         $error_message = null;
 

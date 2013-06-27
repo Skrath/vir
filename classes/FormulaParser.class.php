@@ -7,7 +7,11 @@ class FormulaParser {
     private $formulas = [];
     private $currentObject;
 
+    private $log = false;
+
     public function __construct(&$character) {
+        Debug::Log();
+
         $this->character = $character;
 
         $directory_contents = scandir(FORMULAS_DIR);
@@ -24,6 +28,9 @@ class FormulaParser {
     }
 
     public function compute($formula, &$object) {
+        Debug::Log();
+
+        if ($formula == 'vigor') $this->log = true;
 
         if (array_key_exists($formula, $this->formulas)) {
             $this->currentObject = $object;
@@ -36,6 +43,8 @@ class FormulaParser {
     }
 
     private function parse($xml) {
+        Debug::Log();
+
         $command = $xml->getName();
 
         if ( method_exists($this, $command)  ) {
@@ -44,6 +53,7 @@ class FormulaParser {
     }
 
     private function set($xml) {
+        Debug::Log();
 
         $var = (string)$xml->attributes()['name'];
 
@@ -57,6 +67,8 @@ class FormulaParser {
     }
 
     private function add($xml) {
+        Debug::Log();
+
         $total = 0;
 
         foreach ($xml->children() as $element) {
@@ -67,6 +79,8 @@ class FormulaParser {
     }
 
     private function subtract($xml) {
+        Debug::Log();
+
         $total = 0;
 
         foreach ($xml->children() as $element) {
@@ -77,6 +91,8 @@ class FormulaParser {
     }
 
     private function multiply($xml) {
+        Debug::Log();
+
         $total = 1;
 
         foreach ($xml->children() as $element) {
@@ -88,12 +104,16 @@ class FormulaParser {
 
     // Only takes 2 params currently
     private function divide($xml) {
+        Debug::Log();
+
         $total = (float)$this->parse($xml->children()[0]) / (float)$this->parse($xml->children()[1]);
 
         return $total;
     }
 
     private function data($xml) {
+        Debug::Log();
+
         $terms = explode('.', $xml->attributes()['type']);
 
         $type = array_shift($terms);
@@ -122,6 +142,8 @@ class FormulaParser {
 
     // Currently only works with member vars
     private function getVariable($target, $terms) {
+        Debug::Log();
+
         $current = $target;
 
         foreach ($terms as $term) {
