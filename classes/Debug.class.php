@@ -21,7 +21,7 @@ class Debug {
 
         $execution_time = self::$scriptEnd - $_SERVER["REQUEST_TIME_FLOAT"];
 
-        echo 'Script execution time: ' . $execution_time . '</br>';
+        self::Log('Script execution time: ' . $execution_time . '</br>', self::LOG_INFO);
     }
 
     public static function Log($message = null, $log_level = 16) {
