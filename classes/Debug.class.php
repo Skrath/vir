@@ -22,6 +22,8 @@ class Debug {
         $execution_time = self::$scriptEnd - $_SERVER["REQUEST_TIME_FLOAT"];
 
         self::Log('Script execution time: ' . $execution_time . '</br>', self::LOG_INFO);
+
+        self::writeLogEntries();
     }
 
     public static function Log($message = null, $log_level = 16) {
@@ -77,5 +79,19 @@ class Debug {
         }
 
         return $return_array;
+    }
+
+    public static function writeLogEntries() {
+       if (LOG_LEVEL == 0) return;
+
+        $file_name = LOGS_DIR . '/' . PROCESS_ID . '.log';
+
+        $file_pointer = fopen($file_name, 'w');
+
+        foreach (self::getLogEntries() as $entry) {
+            fwrite($file_pointer, $entry . "\n");
+        }
+
+        fclose($file_pointer);
     }
 }

@@ -20,5 +20,3 @@ $smarty->display('character.tpl');
 
 
 Debug::End();
-
-Debug::printLogEntries();
