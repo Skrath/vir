@@ -7,8 +7,6 @@ class FormulaParser {
     private $formulas = [];
     private $currentObject;
 
-    private $log = false;
-
     public function __construct(&$character) {
         Debug::Log();
 
@@ -29,8 +27,6 @@ class FormulaParser {
 
     public function compute($formula, &$object) {
         Debug::Log();
-
-        if ($formula == 'vigor') $this->log = true;
 
         if (array_key_exists($formula, $this->formulas)) {
             $this->currentObject = $object;
