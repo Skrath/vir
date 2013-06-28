@@ -1,7 +1,7 @@
 <?php
 namespace vir;
 
-class ObjectGroup implements \Iterator, \ArrayAccess {
+class ObjectGroup implements \Iterator, \ArrayAccess, \JsonSerializable {
     private $position = 0;
     private $container = [];
 
@@ -53,6 +53,10 @@ class ObjectGroup implements \Iterator, \ArrayAccess {
         return $this->find($offset);
     }
 
+    ///// JsonSerializeable
+    public function jsonSerialize() {
+        return $this->container;
+    }
 
     public function __get($name) {
         Debug::Log();

@@ -26,11 +26,11 @@ function parseCharacter(character) {
 function parseAbilityGroups(AbilityGroups) {
 
 
-    for (var key in AbilityGroups.container) {
+    for (var key in AbilityGroups) {
 
-        var abilityGroupBox = $("#" + AbilityGroups.container[key].flat_name + "_box");
+        var abilityGroupBox = $("#" + AbilityGroups[key].flat_name + "_box");
 
-        abilityGroupBox.find("p.level").text(AbilityGroups.container[key].base_level);
+        abilityGroupBox.find("p.level").text(AbilityGroups[key].base_level);
     }
 
 }
