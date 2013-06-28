@@ -46,12 +46,12 @@ class AbilityGroups extends ObjectGroup {
             $xml = simplexml_load_file($file);
 
             foreach ($xml as $group) {
-                $this->add((string)$group->attributes()['name'], new AbilityGroup([
-                            'name' => (string)$group->attributes()['name'],
-                            'formula' => 'ability_group',
-                            'primary' => (string)$group->primary,
-                            'secondary' => (string)$group->secondary,
-                            'negative' => (string)$group->negative]));
+                $this[(string)$group->attributes()['name']] = new AbilityGroup([
+                                                                  'name' => (string)$group->attributes()['name'],
+                                                                  'formula' => 'ability_group',
+                                                                  'primary' => (string)$group->primary,
+                                                                  'secondary' => (string)$group->secondary,
+                                                                  'negative' => (string)$group->negative]);
             }
         } else {
             exit("Failed to open $file");

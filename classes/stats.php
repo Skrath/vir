@@ -30,7 +30,7 @@ class PrimaryStats extends ObjectGroup {
         Debug::Log();
 
         foreach (['Strength', 'Perception', 'Endurance', 'Charisma', 'Intelligence', 'Agility', 'Luck'] as $stat) {
-            $this->add($stat, new Stat(['value' => 5]));
+            $this[$stat] = new Stat(['value' => 5]);
         }
     }
 }
@@ -40,10 +40,10 @@ class SecondaryStats extends ObjectGroup {
     public function __construct() {
         Debug::Log();
 
-        $this->add('Vigor', new Stat(['formula' => 'vigor']));
-        $this->add('Vigor Regen', new Stat(['formula' => 'vigor_regen']));
-        $this->add('Focus', new Stat(['formula' => 'focus']));
-        $this->add('Focus Regen', new Stat(['formula' => 'focus_regen']));
+        $this['Vigor'] = new Stat(['formula' => 'vigor']);
+        $this['Vigor Regen'] = new Stat(['formula' => 'vigor_regen']);
+        $this['Focus'] = new Stat(['formula' => 'focus']);
+        $this['Focus Regen'] = new Stat(['formula' => 'focus_regen']);
     }
 
     public function calculate(FormulaParser &$formulaParser) {

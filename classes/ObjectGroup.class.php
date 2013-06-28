@@ -1,7 +1,7 @@
 <?php
 namespace vir;
 
-class ObjectGroup implements \Iterator {
+class ObjectGroup implements \Iterator, \ArrayAccess {
     private $position = 0;
     private $container = [];
 
@@ -32,6 +32,27 @@ class ObjectGroup implements \Iterator {
         return isset($this->container[$this->position]);
     }
 
+    ///// ArrayAccess functions
+    public function offsetSet($offset, $value) {
+        Debug::Log();
+
+        $value->setName($offset);
+        $this->container[] = $value;
+    }
+
+    public function offsetExists($offset) {
+        $item = $this->find($offset);
+        return isset($item);
+    }
+
+    public function offsetUnset($offset) {
+        return false;
+    }
+
+    public function offsetGet($offset) {
+        return $this->find($offset);
+    }
+
 
     public function __get($name) {
         Debug::Log();
@@ -44,13 +65,6 @@ class ObjectGroup implements \Iterator {
 
         $item = $this->find($name);
         $item($value);
-    }
-
-    public function add($name, $item) {
-        Debug::Log();
-
-        $item->setName($name);
-        $this->container[] = $item;
     }
 
     private function find($name) {
