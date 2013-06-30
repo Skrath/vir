@@ -98,19 +98,21 @@ class Debug {
     }
 
     public static function getLogFile($params) {
-        $success = false;
-        $error_message = '';
         $content = [];
 
         $file_name = LOGS_DIR . '/' . $params['id'] . '.log';
 
         $file_pointer = fopen($file_name, 'r');
 
-        while ($content[] = fgets($file_pointer)) {};
+        if ($file_pointer) {
 
-        fclose($file_pointer);
+            while ($content[] = fgets($file_pointer)) {};
 
+            fclose($file_pointer);
+        } else {
+            Debug::Log("Log file ({$file_name}) not found", Debug::LOG_ERROR);
+        }
 
-        return (['success' => $success, 'data' => $content, 'error_message' => $error_message]);
+        return $content;
     }
 }
