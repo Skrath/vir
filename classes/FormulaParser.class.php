@@ -15,7 +15,10 @@ class FormulaParser {
         $directory_contents = scandir(FORMULAS_DIR);
 
         foreach ($directory_contents as $file) {
-            if (strtolower(array_pop(explode('.', $file))) == 'xml') {
+            $extension = explode('.', $file);
+            $extension = array_pop($extension);
+            $extension = strtolower($extension);
+            if ($extension == 'xml') {
                 $xml = simplexml_load_file(FORMULAS_DIR . '/' . $file);
 
                 foreach ($xml as $formula) {
