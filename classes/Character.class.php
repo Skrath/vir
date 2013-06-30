@@ -35,20 +35,14 @@ class Character {
     public function setPrimaryStat($params) {
         Debug::Log();
 
-        $success = true;
-        $error_message = null;
-
         $this->PrimaryStats->$params['stat'] = (int)$params['value'];
         $this->AbilityGroups->calculate($this->formulaParser);
 
-        return (['success' => $success, 'data' => $this, 'error_message' => $error_message]);
+        return $this;
     }
 
     public function setMultiplePrimaryStats($params) {
         Debug::Log();
-
-        $success = true;
-        $error_message = null;
 
         foreach ($params as $stat => $value) {
             $this->PrimaryStats->$stat = (int)$value;
@@ -56,6 +50,6 @@ class Character {
 
         $this->AbilityGroups->calculate($this->formulaParser);
 
-        return (['success' => $success, 'data' => $this, 'error_message' => $error_message]);
+        return $this;
     }
 }
