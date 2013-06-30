@@ -71,11 +71,13 @@ class Debug {
         }
     }
 
-    public static function getLogEntries() {
+    public static function getLogEntries($log_level = 31) {
         $return_array = [];
 
         foreach (self::$logEntries as $entry) {
-            $return_array[] = self::formatLogEntry($entry);
+            if ($log_level & $entry['log_level']) {
+                $return_array[] = self::formatLogEntry($entry);
+            }
         }
 
         return $return_array;
