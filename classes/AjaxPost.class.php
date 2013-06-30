@@ -43,6 +43,22 @@ final class AjaxPost {
         $this->display();
     }
 
+    private function prepare_output($results = null) {
+        $success = true;
+        $error_message = '';
+
+        if (is_null($results)) $this->post_error("{$this->object}->{$this->action} did not return any results");
+
+        $errors = Debug::getLogEntries(Debug::LOG_ERROR);
+
+        if (count($errors) > 0) {
+            $error_message = array_pop($errors);
+            $success = false;
+        }
+
+        return (['success' => $success, 'data' => $results, 'error_message' => $error_message]);
+    }
+
     private function run_action() {
         if (!$this->valid) return;
 
@@ -58,7 +74,7 @@ final class AjaxPost {
 
         // Call the function so long as it exists
         if (method_exists($this->instantiated_object, $this->action)) {
-            $this->output = $this->instantiated_object->{$this->action}($param_array);
+            $this->output = $this->prepare_output($this->instantiated_object->{$this->action}($param_array));
         } else {
             $this->post_error("{$this->action} method not found in {$this->object} class");
         }
