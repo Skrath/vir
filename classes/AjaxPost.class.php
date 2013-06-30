@@ -10,6 +10,7 @@ final class AjaxPost {
     private $output;
     private $valid = true;
     private $instantiated_object;
+    private $is_abstract = false;
 
     public function __construct($allowed_objects, $allowed_actions) {
         $this->allowed_objects = $allowed_objects;
@@ -59,15 +60,22 @@ final class AjaxPost {
 
         if (class_exists('vir\\' . $this->object)) {
             $reflectionObject = new \ReflectionClass('vir\\' . $this->object);
-            if (is_null($reflectionObject->getConstructor())) {
-                $this->post_error("Unable to instantiate {$this->object} object (no constructor)");
-            } else {
-                $this->instantiated_object = $reflectionObject->newInstance();
+            if ($reflectionObject->isAbstract()) {
+                $this->is_abstract = true;
+            } else if ($reflectionObject->isInstantiable()) {
+                if (is_null($reflectionObject->getConstructor())) {
+                    $this->instantiated_object = $reflectionObject->newInstanceWithoutConstructor();
+                } else {
+                    $this->instantiated_object = $reflectionObject->newInstance();
+                }
                 // Call setup method if available
-                if (method_exists($this->instantiated_object, 'setup')) {
+                if ($reflectionObject->hasMethod('setup')) {
                     $this->instantiated_object->setup();
                 }
+            } else {
+                $this->post_error("Class {$this->object} is not abstract and could not be instantiated");
             }
+
         } else {
             $this->post_error("Class {$this->object} does not exist");
         }
