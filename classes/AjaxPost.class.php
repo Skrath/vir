@@ -60,7 +60,7 @@ final class AjaxPost {
         if (method_exists($this->instantiated_object, $this->action)) {
             $this->output = $this->instantiated_object->{$this->action}($param_array);
         } else {
-            $this->post_error("{$this->action} action not found in {$this->object} class");
+            $this->post_error("{$this->action} method not found in {$this->object} class");
         }
     }
 
