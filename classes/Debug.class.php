@@ -94,4 +94,21 @@ class Debug {
 
         fclose($file_pointer);
     }
+
+    public static function getLogFile($params) {
+        $success = false;
+        $error_message = '';
+        $content = [];
+
+        $file_name = LOGS_DIR . '/' . $params['id'] . '.log';
+
+        $file_pointer = fopen($file_name, 'r');
+
+        while ($content[] = fgets($file_pointer)) {};
+
+        fclose($file_pointer);
+
+
+        return (['success' => $success, 'data' => $content, 'error_message' => $error_message]);
+    }
 }
