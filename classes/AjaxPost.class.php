@@ -16,12 +16,24 @@ final class AjaxPost {
         $this->allowed_objects = $allowed_objects;
         $this->allowed_actions = $allowed_actions;
 
+        set_error_handler([$this, 'errorHandler']);
+
         // JSONP requests will send a param named 'callback'
         // If we are using JSONP we don't want to handle sessions
         // as this is assumed to be a remote AJAX request.
         //
         $this->sendback_JSONP = (isset($_REQUEST['callback']) && ($_REQUEST['callback'] != ''));
 
+    }
+
+    public function errorHandler($errno, $errstr, $errfile, $errline, array $errcontext)
+    {
+        // error was suppressed with the @-operator
+        if (0 === error_reporting()) {
+            return false;
+        }
+
+        $this->post_error('(' . $errfile . '[' . $errline . ']) ' . $errstr);
     }
 
     public function process() {
