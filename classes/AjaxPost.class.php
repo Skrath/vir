@@ -9,8 +9,8 @@ final class AjaxPost {
     private $error_messages;
     private $output;
     private $valid = true;
-    private $instantiated_object;
-    private $is_abstract = false;
+    private $instantiated_object = null;
+    private $object_method;
 
     public function __construct($allowed_objects, $allowed_actions) {
         $this->allowed_objects = $allowed_objects;
@@ -72,12 +72,7 @@ final class AjaxPost {
             }
         }
 
-        // Call the function so long as it exists
-        if (method_exists($this->instantiated_object, $this->action)) {
-            $this->output = $this->prepare_output($this->instantiated_object->{$this->action}($param_array));
-        } else {
-            $this->post_error("{$this->action} method not found in {$this->object} class");
-        }
+        $this->output = $this->object_method->invoke($this->instantiated_object, $param_array);
     }
 
     private function create_object() {
@@ -88,20 +83,30 @@ final class AjaxPost {
 
         if (class_exists('vir\\' . $this->object)) {
             $reflectionObject = new \ReflectionClass('vir\\' . $this->object);
-            if ($reflectionObject->isAbstract()) {
-                $this->is_abstract = true;
-            } else if ($reflectionObject->isInstantiable()) {
-                if (is_null($reflectionObject->getConstructor())) {
-                    $this->instantiated_object = $reflectionObject->newInstanceWithoutConstructor();
-                } else {
-                    $this->instantiated_object = $reflectionObject->newInstance();
-                }
-                // Call setup method if available
-                if ($reflectionObject->hasMethod('setup')) {
-                    $this->instantiated_object->setup();
-                }
+
+            // Make sure the method exists before discovering it
+            if ($reflectionObject->hasMethod($this->action)) {
+                $this->object_method = $reflectionObject->getMethod($this->action);
             } else {
-                $this->post_error("Class {$this->object} is not abstract and could not be instantiated");
+                $this->post_error("{$this->action} method not found in {$this->object} class");
+            }
+
+            // If our method isn't static, then we need to instantiate the object
+            if (!$this->object_method->isStatic()) {
+                if ($reflectionObject->isInstantiable()) {
+                    if (is_null($reflectionObject->getConstructor())) {
+                        $this->instantiated_object = $reflectionObject->newInstanceWithoutConstructor();
+                    } else {
+                        $this->instantiated_object = $reflectionObject->newInstance();
+                    }
+                } else {
+                    $this->post_error("Class {$this->object} is not static and could not be instantiated");
+                }
+            }
+
+            // Call setup method if available
+            if ($reflectionObject->hasMethod('setup')) {
+                $reflectionObject->getMethod('setup')->invoke($this->instantiated_object);
             }
 
         } else {
