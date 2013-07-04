@@ -72,7 +72,7 @@ final class AjaxPost {
             }
         }
 
-        $this->output = $this->object_method->invoke($this->instantiated_object, $param_array);
+        $this->output = $this->prepare_output($this->object_method->invoke($this->instantiated_object, $param_array));
     }
 
     private function create_object() {
