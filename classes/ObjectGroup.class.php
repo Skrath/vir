@@ -68,7 +68,7 @@ class ObjectGroup implements \Iterator, \ArrayAccess, \JsonSerializable {
         Debug::Log();
 
         $item = $this->find($name);
-        $item($value);
+        return $item($value);
     }
 
     private function find($name) {
