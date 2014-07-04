@@ -13,11 +13,11 @@ function ajaxSubmit(params, dataCallback, callback) {
                        if (data.valid) {
                            if (data.output.success) {
                                jQuery(data.output.data).each(function(index, item) {
-                                   if (typeof dataCallback == 'function') {
+                                   if (typeof dataCallback === 'function') {
                                        dataCallback(item);
                                    }
                                });
-                               if (typeof callback == 'function') {
+                               if (typeof callback === 'function') {
                                    callback(data);
                                }
                            } else {
@@ -88,8 +88,8 @@ function removeMessage(messageObject) {
                 value.dialog("option", {
                     position: {
                         my: "right bottom",
-                        at: (key != 0) ? "right top": "right bottom",
-                        of: (key != 0) ? messageList[key-1].parent() : window,
+                        at: (key !== 0) ? "right top": "right bottom",
+                        of: (key !== 0) ? messageList[key-1].parent() : window,
                     }
                 });
             }
