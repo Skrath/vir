@@ -12,9 +12,9 @@ final class AjaxPost {
     private $instantiated_object = null;
     private $object_method;
 
-    public function __construct($allowed_objects, $allowed_actions) {
-        $this->allowed_objects = $allowed_objects;
-        $this->allowed_actions = $allowed_actions;
+    public function __construct($allowedObjects, $allowedActions) {
+        $this->allowed_objects = $allowedObjects;
+        $this->allowed_actions = $allowedActions;
 
         set_error_handler([$this, 'errorHandler']);
 
@@ -33,21 +33,21 @@ final class AjaxPost {
             return false;
         }
 
-        $this->post_error('(' . $errfile . '[' . $errline . ']) ' . $errstr);
+        $this->postError('(' . $errfile . '[' . $errline . ']) ' . $errstr);
     }
 
     public function process() {
         $this->validate();
-        $this->create_object();
-        $this->run_action();
+        $this->createObject();
+        $this->runAction();
         $this->display();
     }
 
-    private function prepare_output($results = null) {
+    private function prepareOutput($results = null) {
         $success = true;
         $error_message = '';
 
-        if (is_null($results)) $this->post_error("{$this->object}->{$this->action} did not return any results");
+        if (is_null($results)) $this->postError("{$this->object}->{$this->action} did not return any results");
 
         $errors = Debug::getLogEntries(Debug::LOG_ERROR);
 
@@ -59,7 +59,7 @@ final class AjaxPost {
         return (['success' => $success, 'data' => $results, 'error_message' => $error_message]);
     }
 
-    private function run_action() {
+    private function runAction() {
         if (!$this->valid) return;
 
         $param_array = [];
@@ -72,10 +72,10 @@ final class AjaxPost {
             }
         }
 
-        $this->output = $this->prepare_output($this->object_method->invoke($this->instantiated_object, $param_array));
+        $this->output = $this->prepareOutput($this->object_method->invoke($this->instantiated_object, $param_array));
     }
 
-    private function create_object() {
+    private function createObject() {
         if (!$this->valid) return;
 
         // Load the necessary class file
@@ -88,7 +88,7 @@ final class AjaxPost {
             if ($reflectionObject->hasMethod($this->action)) {
                 $this->object_method = $reflectionObject->getMethod($this->action);
             } else {
-                $this->post_error("{$this->action} method not found in {$this->object} class");
+                $this->postError("{$this->action} method not found in {$this->object} class");
             }
 
             // If our method isn't static, then we need to instantiate the object
@@ -100,7 +100,7 @@ final class AjaxPost {
                         $this->instantiated_object = $reflectionObject->newInstance();
                     }
                 } else {
-                    $this->post_error("Class {$this->object} is not static and could not be instantiated");
+                    $this->postError("Class {$this->object} is not static and could not be instantiated");
                 }
             }
 
@@ -110,43 +110,43 @@ final class AjaxPost {
             }
 
         } else {
-            $this->post_error("Class {$this->object} does not exist");
+            $this->postError("Class {$this->object} does not exist");
         }
     }
 
-    private function post_error($message) {
+    private function postError($message) {
         $this->error_messages[] = $message;
         $this->valid = false;
     }
 
     private function display() {
-        $this->create_json_header();
+        $this->createJsonHeader();
         echo json_encode([
                 'output' => $this->output,
                 'valid' => $this->valid,
                 'error_messages' => $this->error_messages,
             ]);
-        $this->close_json();
+        $this->closeJson();
     }
 
     private function validate() {
-        $this->validate_request();
+        $this->validateRequest();
 
-        $this->validate_request_var('action');
-        $this->validate_request_var('object');
+        $this->validateRequestVar('action');
+        $this->validateRequestVar('object');
     }
 
-    private function validate_request() {
+    private function validateRequest() {
         foreach(['action','object'] as $var) {
             if ( !isset($_REQUEST[$var]) || $_REQUEST[$var] == '') {
-                $this->post_error("\$_REQUEST variable is missing the $var param");
+                $this->postError("\$_REQUEST variable is missing the $var param");
             }
         }
     }
 
     // Make sure that a $_REQUEST variable exists and is within our
     // $validation_array
-    private function validate_request_var($variable) {
+    private function validateRequestVar($variable) {
         if (!$this->valid) return;
 
         $validation_array_name = 'allowed_' . $variable . 's';
@@ -154,16 +154,16 @@ final class AjaxPost {
             $this->$variable = $_REQUEST[$variable];
         } else {
             if (isset($_REQUEST[$variable])) {
-                $this->post_error("'{$_REQUEST[$variable]}' is not a valid $variable request");
+                $this->postError("'{$_REQUEST[$variable]}' is not a valid $variable request");
             } else {
-                $this->post_error("\$_REQUEST does not contain variable: $variable");
+                $this->postError("\$_REQUEST does not contain variable: $variable");
             }
         }
     }
 
     // Send JSONP Header if necessary
     //
-    private function create_json_header() {
+    private function createJsonHeader() {
         if ($this->sendback_JSONP) {
             if (!DEBUGGING) {header('content-type: application/json; charset=utf-8');}
             echo $_GET['callback'] . '(';
@@ -172,7 +172,7 @@ final class AjaxPost {
 
     // Close the JSONP Header if necessary
     //
-    private function close_json() {
+    private function closeJson() {
         if ($this->sendback_JSONP) {
             echo ')';
         }
