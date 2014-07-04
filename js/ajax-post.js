@@ -1,11 +1,11 @@
 // This is the main ajax handler. All ajax calls should be going
 // through this function.
 //
-// data_callback will be called on each individual returned item,
+// dataCallback will be called on each individual returned item,
 // while callback will be called on the parent data.
 //
 // Errors are automatically handled via the insertError() function.
-function ajaxSubmit(params, data_callback, callback) {
+function ajaxSubmit(params, dataCallback, callback) {
     var url = 'ajax/public.php';
 
     jQuery.getJSON(url, params,
@@ -13,8 +13,8 @@ function ajaxSubmit(params, data_callback, callback) {
                        if (data.valid) {
                            if (data.output.success) {
                                jQuery(data.output.data).each(function(index, item) {
-                                   if (typeof data_callback == 'function') {
-                                       data_callback(item);
+                                   if (typeof dataCallback == 'function') {
+                                       dataCallback(item);
                                    }
                                });
                                if (typeof callback == 'function') {
