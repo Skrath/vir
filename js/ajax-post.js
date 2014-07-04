@@ -21,10 +21,10 @@ function ajaxSubmit(params, dataCallback, callback) {
                                    callback(data);
                                }
                            } else {
-                               insertError(data.output.error_message);
+                               insertError(data.output.errorMessage);
                            }
                        } else {
-                           insertError(data.error_messages);
+                           insertError(data.errorMessages);
                        }
                    });
 }

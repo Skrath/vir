@@ -6,7 +6,7 @@ final class AjaxPost {
     private $sendback_JSONP;
     private $allowed_objects = [];
     private $allowed_actions = [];
-    private $error_messages;
+    private $errorMessages;
     private $output;
     private $valid = true;
     private $instantiated_object = null;
@@ -45,18 +45,18 @@ final class AjaxPost {
 
     private function prepareOutput($results = null) {
         $success = true;
-        $error_message = '';
+        $errorMessage = '';
 
         if (is_null($results)) $this->postError("{$this->object}->{$this->action} did not return any results");
 
         $errors = Debug::getLogEntries(Debug::LOG_ERROR);
 
         if (count($errors) > 0) {
-            $error_message = array_pop($errors);
+            $errorMessage = array_pop($errors);
             $success = false;
         }
 
-        return (['success' => $success, 'data' => $results, 'error_message' => $error_message]);
+        return (['success' => $success, 'data' => $results, 'errorMessage' => $errorMessage]);
     }
 
     private function runAction() {
@@ -115,7 +115,7 @@ final class AjaxPost {
     }
 
     private function postError($message) {
-        $this->error_messages[] = $message;
+        $this->errorMessages[] = $message;
         $this->valid = false;
     }
 
@@ -124,7 +124,7 @@ final class AjaxPost {
         echo json_encode([
                 'output' => $this->output,
                 'valid' => $this->valid,
-                'error_messages' => $this->error_messages,
+                'errorMessages' => $this->errorMessages,
             ]);
         $this->closeJson();
     }
