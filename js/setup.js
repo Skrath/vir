@@ -1,9 +1,13 @@
-$(function() {
-    $("#primary_stat_update").click(submitPrimaryStats);
+function parseAbilityGroups(AbilityGroups) {
+    for (var key in AbilityGroups) {
+        var abilityGroupBox = $("#" + AbilityGroups[key].flat_name + "_box");
+        abilityGroupBox.find("p.level").text(AbilityGroups[key].base_level);
+    }
+}
 
-    messageList = [];
-
-});
+function parseCharacter(character) {
+    parseAbilityGroups(character.AbilityGroups);
+}
 
 function submitPrimaryStats() {
     ajaxSubmit({
@@ -19,18 +23,17 @@ function submitPrimaryStats() {
     }, parseCharacter, null);
 }
 
-function parseCharacter(character) {
-    parseAbilityGroups(character.AbilityGroups);
-}
+$(function() {
+    $("#primary_stat_update").click(submitPrimaryStats);
 
-function parseAbilityGroups(AbilityGroups) {
+    messageList = [];
 
+    $('#console_handle').click(function() {
+        $('#dev_console').hide("slide",
+                                 {
+                                     direction: 'up',
+                                     distance: 200
+                                 });
+    });
 
-    for (var key in AbilityGroups) {
-
-        var abilityGroupBox = $("#" + AbilityGroups[key].flat_name + "_box");
-
-        abilityGroupBox.find("p.level").text(AbilityGroups[key].base_level);
-    }
-
-}
+});
