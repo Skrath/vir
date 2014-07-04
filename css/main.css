@@ -29,7 +29,7 @@ audio, video {
     display: inline-block;
 }
 
-div.box {
+.box {
     margin: 5px;
     background-color: #cbcbcb;
     background-image: linear-gradient(#dcdcdc, #cbcbcb);
@@ -40,7 +40,7 @@ div.box {
     1px 1px 8px #111; /* Outset shadow */
 }
 
-div.box_header {
+.box_header {
     background-color: #bababa;
     background-image: linear-gradient(#bababa, #ababab);
     background-repeat: repeat-x;
@@ -50,20 +50,20 @@ div.box_header {
     position: relative;
 }
 
-h2.box_title {
+.box_title {
     text-align: center;
     font-variant: small-caps;
     color: #111;
     text-shadow: 1px 1px 1px #eee;
 }
 
-div.box_content {
+.box_content {
     padding: 5px;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #666;
 }
 
-div.box_footer {
+.box_footer {
     background-color: #bababa;
     background-image: linear-gradient(#bababa, #ababab);
     background-repeat: repeat-x;
@@ -78,14 +78,14 @@ div.box_footer {
     position: fixed;
 }
 
-font.positive {
+.positive {
     color: green;
 }
 
-font.negative {
+.negative {
     color: red;
 }
 
-font.larger {
+.larger {
     font-size: larger;
 }
